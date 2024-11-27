@@ -1,0 +1,90 @@
+@import '../../mixins';
+
+
+@mixin divResponsive($margin , $padding) {
+  margin: $margin;
+  padding: $padding;
+}
+
+// login form file styled
+.form-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin: auto;
+
+  @include respond-to-phone {
+    @include divResponsive(2rem auto, 2rem 1rem)
+  }
+
+  @include respond-to-tablet {
+    width: 70%;
+    @include divResponsive(2rem auto, 2rem 1rem)
+  }
+
+  @include respond-to-desktop {
+    padding: 2rem 1rem;
+    width: 35%;
+  }
+
+  @include respond-to-tv {
+    padding: 2rem 1rem;
+    width: 35%;
+  }
+}
+
+.form-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.9375rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form-title {
+  @extend .h3;
+
+  @include respond-to-phone {
+    text-align: center;
+  }
+
+  @include respond-to-tablet {
+    text-align: center;
+  }
+}
+
+.form-description {
+  @extend .p;
+
+  // color: #585858;
+  @include respond-to-phone {
+    text-align: center;
+  }
+
+  @include respond-to-tablet {
+    text-align: center;
+  }
+}
+
+.input-container {
+  margin-top: 0.9375rem;
+}
+
+.button-container {
+  @extend .buttonVarient;
+  @extend .buttonVarient--primary;
+  padding: 0.75rem;
+}
+
+.sign-up-text {
+  @extend .h6;
+  text-align: center;
+  margin-top: 0.9375rem;
+  padding: 0.625rem
+}
+
+.sign-up-link {
+  @extend .a;
+}

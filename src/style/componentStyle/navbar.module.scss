@@ -1,0 +1,47 @@
+// mixin styles
+@import "../mixins";
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  height: 80px;
+  border: 1px solid $border-color;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.location {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  color: black;
+  font-size: 14px;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.navbar-image {
+  width: 100%;
+  height: auto;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  @extend .linking;
+}
+
+.navbar-button {
+  @extend .buttonVarient, .buttonVarient--primary;
+  padding: 0.5625rem 0.9875rem;
+  font-size: 0.75rem;
+}

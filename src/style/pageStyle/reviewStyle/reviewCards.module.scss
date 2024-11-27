@@ -1,0 +1,516 @@
+// mixin file import  style
+@import "../../mixins";
+
+%header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+%sub-herader {
+  width: 100%;
+  display: flex;
+  // justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $border-ligher-color;
+  padding-bottom: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+%title {
+  width: 100%;
+  @extend .h6;
+  margin-left: 0.8rem;
+  color: $secondary-color;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #23babc;
+  }
+}
+
+%status {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.status-card {
+  @extend %centerSection;
+  margin-bottom: 1rem;
+
+  .header {
+    @extend %header;
+
+    .sub-header {
+      @extend %sub-herader;
+
+      .title {
+        @extend %title;
+      }
+    }
+  }
+
+  .description {
+    @extend %status;
+    color: $light;
+
+    label {
+      margin-right: 3rem;
+    }
+
+    input {
+      margin-right: 8px;
+      margin-left: 8px;
+    }
+
+    .textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid $border-ligher-color;
+      border-radius: 4px;
+      font-size: 1rem;
+      resize: vertical;
+    }
+  }
+
+  .salarydropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .dropdown-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dropdown-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-top: 0.5rem;
+
+      .dropdown-icon {
+        position: absolute;
+        left: 10px;
+        top: 7px;
+        pointer-events: none;
+        margin-right: 5px;
+      }
+
+      .dropdown {
+        padding-left: 50px; // Space for the icon
+        width: 100%;
+        cursor: pointer; // Change cursor to pointer
+        appearance: none; // Remove default dropdown arrow
+        border: 0.3px solid $border-ligher-color;
+        border-radius: 4px;
+        font-size: 1rem;
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
+      }
+
+      .dropdown-arrow {
+        position: absolute;
+        right: 25px; // Position arrow at the end
+        top: 39%; // Center vertically
+        transform: translateY(-50%); // Center adjustment
+        transition: transform 0.3s ease; // Smooth transition for rotation
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+
+        // Initial state (downward)
+        transform: rotate(0deg);
+
+        &.rotated {
+          // Rotate arrow when dropdown is open
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  .benefits {
+    .dropdown {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .leaves {
+    .dropdown {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .dropdown {
+    display: flex;
+    gap: 2rem;
+
+    .dropdown-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dropdown-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-top: 0.5rem;
+
+      .dropdown-icon {
+        position: absolute;
+        left: 10px;
+        top: 7px;
+        pointer-events: none;
+        margin-right: 5px;
+      }
+
+      .dropdown {
+        padding-left: 50px; // Space for the icon
+        width: 100%;
+        cursor: pointer; // Change cursor to pointer
+        appearance: none; // Remove default dropdown arrow
+        border: 0.3px solid $border-ligher-color;
+        border-radius: 4px;
+        font-size: 1rem;
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
+      }
+
+      .dropdown-arrow {
+        position: absolute;
+        right: 25px; // Position arrow at the end
+        top: 39%; // Center vertically
+        transform: translateY(-50%); // Center adjustment
+        transition: transform 0.3s ease; // Smooth transition for rotation
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+
+        // Initial state (downward)
+        transform: rotate(0deg);
+
+        &.rotated {
+          // Rotate arrow when dropdown is open
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+
+  .thoughts {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 3rem;
+
+    .radios {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+
+      label {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+
+      }
+    }
+  }
+
+  .rating {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .rating-item {
+    display: flex;
+    padding-right: 5rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    flex-direction: column;
+
+    .rating-label {
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .rating-content {
+      display: flex;
+      align-items: center;
+
+      .stars {
+        display: flex;
+
+
+        span {
+          font-size: 1.5rem;
+        }
+      }
+
+      .rating-button {
+        background-color: $sky-color;
+        border: none;
+        color: white;
+        padding: 0.3rem 1rem;
+        border-radius: 5px;
+        font-size: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+      }
+    }
+
+  }
+
+}
+
+$modal-bg: white;
+$overlay-bg: #000000E0;
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $overlay-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  .modalContent {
+    background: $modal-bg;
+    padding: 2rem;
+    border-radius: 8px;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 40%;
+    position: relative;
+
+    .closeButton {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: #ccc;
+      cursor: pointer;
+    }
+
+    .svgs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .fileUploadLabel {
+      display: block;
+      margin-top: 1rem;
+
+      .uploadField {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        .uploadIcon {
+          position: absolute;
+          margin-top: 0.8rem;
+          left: 10px;
+          font-size: 20px;
+          color: #aaa;
+        }
+
+        .inputField {
+          width: 70%;
+          margin-top: 1rem;
+          padding: 10px 15px 10px 40px;
+          border: 1px solid #ccc;
+          border-radius: 4px 0 0 4px;
+          font-size: 16px;
+          outline: none;
+          cursor: pointer;
+        }
+
+        .browseButton {
+          width: 30%;
+          background-color: $primary-color;
+          color: white;
+          border: none;
+          margin-top: 1rem;
+          border-radius: 0 4px 4px 0;
+          cursor: pointer;
+          padding: 10px;
+          font-size: 16px;
+          position: relative;
+          overflow: hidden;
+
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+
+          input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .categoryList {
+      margin-top: 10px;
+      max-height: 200px;
+      overflow-y: auto;
+
+      .list {
+        display: flex;
+        flex-direction: column;
+
+        .categoryItem {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.5rem;
+          border-bottom: 1px solid #EAF0FF;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          position: relative;
+        }
+
+        .categoryItem:hover {
+          background-color: #d0d0d0;
+        }
+
+        .categoryInfo {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .shortlistedText {
+          color: #F23C32;
+          /* Red color */
+          font-size: 0.9rem;
+          margin-top: 4px;
+          /* Spacing between category name and message */
+        }
+
+        .removeIcon {
+          color: #F23C32;
+          cursor: pointer;
+          font-size: 1.2rem;
+          margin-left: auto;
+          /* Pushes icon to the far right */
+        }
+
+        .selected {
+          background-color: $primary-color;
+          color: white;
+        }
+      }
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    p {
+      display: flex;
+      margin-top: 0.7rem;
+      font-weight: 400;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .input {
+      width: 100%;
+      padding: 0.9rem;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    .suggestionsList {
+      position: absolute;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 88%;
+      height: auto;
+      overflow-y: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      list-style: none;
+      z-index: 1000;
+    }
+
+    .suggestionItem {
+      padding: 12px;
+      color: $secondary-color;
+      // border-bottom: 1px solid #ccc;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .suggestionItem:hover {
+      background-color: #f0f0f0;
+    }
+
+    .suggestionItem:active {
+      background-color: #e0e0e0;
+    }
+
+    .continueButton {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.6rem;
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
+}
+
+// .suggestionsList {
+//   list-style: none;
+//   padding: 0;
+//   margin: 0;
+//   border: 1px solid #ccc;
+//   background-color: white;
+//   max-height: 200px;
+//   overflow-y: auto;
+// }
+
+// .suggestionItem {
+//   padding: 8px;
+//   cursor: pointer;
+
+//   &:hover {
+//       background-color: #f0f0f0;
+//   }
+// }

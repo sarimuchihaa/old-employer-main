@@ -1,0 +1,111 @@
+// mixins file import
+@import "../../mixins";
+
+//profile index file style
+.profile {
+  padding-top: 1rem;
+  padding-bottom: 1.3rem;
+  display: flex;
+  justify-content: center;
+  background-color: $border-ligher-color;
+
+  .content-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    .left-column {
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9375rem;
+
+      @include respond-to-phone {
+        width: 100%;
+      }
+
+      @include respond-to-tablet {
+        width: 100%;
+      }
+
+      @include respond-to-desktop {
+        width: 70%;
+      }
+
+      @include respond-to-tv {
+        width: 69%;
+      }
+    }
+
+    .right-column {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9375rem;
+
+      @include respond-to-desktop {
+        width: 30%;
+      }
+
+      @include respond-to-tv {
+        width: 30%;
+      }
+
+      @include respond-to-phone {
+        width: 100%;
+      }
+
+      @include respond-to-tablet {
+        width: 100%;
+      }
+    }
+
+    .verify-column {
+      padding: 5rem;
+      font-size: 2rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: $primary-color;
+      align-items: center;
+      text-align: center;
+    }
+
+    .center-column {
+      width: 100%;
+      margin-bottom: 1rem;
+
+      @include respond-to-phone {
+        width: 100%;
+      }
+
+      @include respond-to-tablet {
+        width: 100%;
+      }
+
+      @include respond-to-desktop {
+        width: 65%;
+      }
+    }
+
+    @include respond-to-phone {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    @include respond-to-tablet {
+      flex-direction: column;
+      width: 95%;
+    }
+
+    @include respond-to-desktop {
+      width: 90%;
+    }
+
+    @include respond-to-tv {
+      width: 76.56%;
+    }
+  }
+}

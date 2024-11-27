@@ -1,0 +1,51 @@
+// mixin styles
+@import "../../mixins";
+
+// styles for contactInfoCard
+%headerStyle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid $border-card-color;
+}
+
+%contentStyle {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 1.25rem;
+  margin-top: 1rem;
+}
+
+.contact-container {
+  @extend %card-style;
+  padding-bottom: 1rem;
+  // margin: 1rem 0;
+
+  .header {
+    @extend %headerStyle;
+
+    .title {
+      @extend .h6;
+      color: $lable-color;
+    }
+
+    .edit-icon {
+      cursor: pointer;
+    }
+  }
+
+  .content {
+    @extend %contentStyle;
+
+    .item {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      @extend .smallText;
+      color: $primary;
+
+    }
+  }
+}

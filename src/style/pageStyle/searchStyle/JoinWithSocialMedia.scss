@@ -1,0 +1,64 @@
+.join-with-social-media {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  font-weight: normal; // Reset the font-weight for the container
+  text-align: left; // Align text to the left
+  // Remove box shadow and border radius
+  // border-radius: 10px;
+  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  // .text-content {
+  //   // font-weight: bold !important; // Remove bold styling
+  // }
+}
+
+h2 {
+  font-size: 30px !important; // Increase the font size
+  font-weight: bold !important; // Ensure bold is applied to the h2 element
+  margin: 0 0 10px 0;
+  text-align: left; // Align text to the left
+}
+
+.underline {
+  width: 50px;
+  height: 3px;
+  background-color: #008080;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  text-align: left; // Align text to the left
+}
+
+.social-icons {
+  display: flex;
+  justify-content: left;
+
+  margin-top: 15px;
+
+  .icon {
+    width: 40px;
+    height: 40px;
+
+  }
+}
+
+.link {
+  color: #008080;
+  text-decoration: none;
+  text-align: left; // Align text to the left
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Add styles for the new section
+.section-6 {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  text-align: left; // Align text to the left
+  // Remove box shadow and border radius
+  // border-radius: 10px;
+  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

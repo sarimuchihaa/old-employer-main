@@ -1,0 +1,44 @@
+@import "../../mixins";
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; // Align pagination to the end
+  margin: 20px 14%;
+
+  .arrow,
+  .page-number {
+    background-color: #fff;
+    border: 1px solid #ccc; // Add border to make it circular
+    border-radius: 50%; // Make it circular
+    width: 30px; // Set width
+    height: 30px; // Set height
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    color: #008080;
+    margin: 0 10px;
+    transition: background-color 0.3s, transform 0.3s; // Add transition for animation
+
+    &:hover:not(.active) {
+      background-color: #f0f0f0;
+      transform: scale(1.1); // Scale up on hover
+    }
+
+    &:active {
+      transform: scale(0.9); // Scale down on click
+    }
+
+    &.active {
+      background-color: $primary-color; // Use primary color from mixins
+      color: $white-color; // Use white color from mixins
+    }
+
+    &:disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+}

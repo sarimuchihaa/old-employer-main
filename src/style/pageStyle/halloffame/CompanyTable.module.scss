@@ -1,0 +1,108 @@
+@import "../../mixins";
+
+.hallOfFame {
+  padding-top: 1rem;
+  background-color: $border-ligher-color;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding-bottom: 1rem;
+}
+
+.tableContainer {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.companyTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px; // Add space between rows
+  margin-top: 20px;
+
+  tbody {
+    tr {
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: $primary-light-color;
+      }
+    }
+  }
+
+  th,
+  td {
+    padding: 25px; // Increase padding to make spacing more visible
+    text-align: left;
+  }
+
+  thead {
+    background-color: #eaf0ff;
+  }
+
+  tbody tr {
+    background-color: $white-color; // Set background color for rows
+    border-radius: 3%; // Add rounded corners
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Add shadow for separation
+  }
+
+  tbody tr td {
+    border-top: 1px solid $border-light-color;
+    border-bottom: 1px solid $border-light-color;
+  }
+
+  tbody tr:first-child td {
+    border-top: none;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.companyInfo {
+  display: flex;
+  align-items: center;
+}
+
+.companyLogo {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+.stars {
+  color: $waring-color;
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.ratingScore {
+  background-color: $primary-color;
+  color: $white-color;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.goodReviews,
+.badReviews {
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-right: 5px;
+  }
+}
+
+.viewButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}

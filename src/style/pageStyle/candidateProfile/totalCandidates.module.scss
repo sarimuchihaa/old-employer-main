@@ -1,0 +1,200 @@
+//  mixin styles
+@import "../../mixins";
+
+@import "../../pageStyle/profileStyle/contactCard.module.scss";
+// @import "../../pageStyle/profileStyle/aboutCard.module.scss";
+
+%headers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1rem 0.1rem 1rem;
+}
+
+%sub-herader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $border-ligher-color;
+  padding-bottom: 0.25rem;
+  // margin-bottom: 1.5rem;
+}
+
+%content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 1.25rem;
+  // margin-top: 1rem;
+}
+
+%title-icon {
+  @extend .h6;
+  // margin-left: 0.5rem;
+  color: $secondary-color;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #23babc;
+  }
+}
+
+// style top Profile styles
+.top-profile-card {
+  @extend %card-style;
+
+
+  .header {
+    @extend %headers;
+
+    .sub-header {
+      @extend %sub-herader;
+
+      // .subc-header {
+      //   @extend %sub-herader;
+
+
+      .title {
+        @extend %title-icon;
+      }
+
+      .title-icon {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.9rem;
+        color: $primary_color;
+        cursor: pointer;
+      }
+
+    }
+  }
+
+  .profile-list {
+    @extend %content;
+  }
+
+  @include respond-to-desktop {
+    width: calc(50% - 15px);
+  }
+}
+
+.saved-searches-dropdown {
+  background-color: #ffffff;
+  border-radius: 0.625rem; // 10px to rem
+  overflow: hidden;
+  // margin-bottom: 1rem;
+  border-bottom: 1px solid #EAF0FF;
+  font-family: Arial, sans-serif;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9375rem; // 15px to rem
+    cursor: pointer;
+
+    // border-bottom: 1px solid #e0e0e0;
+
+    .title {
+      color: #8C8C8C;
+      font-size: 1rem; // 16px to rem
+    }
+
+    .icons {
+      display: flex;
+      gap: 0.5rem;
+
+      .arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2.375rem; // 38px to rem
+        width: 2.375rem; // 38px to rem
+        margin-right: 0.625rem; // 10px to rem
+        transition: transform 0.3s ease;
+      }
+
+      .add-button {
+        display: flex;
+        border-radius: 0.5rem;
+        padding: 0.8rem;
+        background-color: $primary-color;
+      }
+    }
+
+  }
+
+  .dropdown-content {
+    padding: 0.9375rem; // 15px to rem
+    background-color: #f9f9f9;
+    color: #8C8C8C;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    overflow: hidden;
+  }
+
+  &.open .dropdown-content {
+    max-height: 12.5rem; // 200px to rem
+  }
+}
+
+.categoryList {
+  margin-top: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+
+  .list {
+    display: flex;
+    flex-direction: column;
+
+    .categoryItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem;
+      border-bottom: 1px solid #EAF0FF;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      position: relative;
+    }
+
+    .categoryItem:hover {
+      background-color: #d0d0d0;
+    }
+
+    .categoryInfo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .shortlistedText {
+      color: #F23C32;
+      /* Red color */
+      font-size: 0.9rem;
+      margin-top: 4px;
+      /* Spacing between category name and message */
+    }
+
+    .removeIcon {
+      color: #F23C32;
+      cursor: pointer;
+      font-size: 1.2rem;
+      margin-left: auto;
+      /* Pushes icon to the far right */
+    }
+
+    .selected {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+}

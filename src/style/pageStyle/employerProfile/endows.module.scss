@@ -1,0 +1,61 @@
+// mixin file import  style
+@import "../../mixins";
+
+.status-card {
+  @extend %centerSection;
+
+  .thoughts {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 3rem;
+    // padding: 3rem;
+
+
+    // border-right: 1px solid $border-ligher-color;
+
+    .radios {
+      width: 32%;
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+
+    .radios {
+      width: 32%;
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .add-card {
+      background-color: #C8F1CF;
+      padding: 2rem;
+      text-align: center;
+      width: 50%;
+
+      p {
+        padding-bottom: 2rem
+      }
+    }
+
+    .btn-endows {
+      @extend .buttonVarient, .buttonVarient--primary;
+      padding: 0.7rem;
+      font-size: 0.9rem
+    }
+
+    .btn-join {
+      @extend .buttonVarient, .buttonVarient--primary;
+      background-color: black;
+      color: white;
+    }
+  }
+
+}

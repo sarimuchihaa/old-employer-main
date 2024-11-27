@@ -1,0 +1,106 @@
+// mixins file import
+@import "../../mixins";
+
+//profile index file style
+.profile {
+  padding: 1rem;
+  // display: flex;
+  // justify-content: center;
+  background-color: $border-ligher-color;
+
+  .content-container {
+    display: flex;
+    gap: 1.875rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    .left-column {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+
+      @include respond-to-phone {
+        width: 100%;
+      }
+
+      @include respond-to-tablet {
+        width: 100%;
+      }
+
+      @include respond-to-desktop {
+        width: calc(35% - 30px);
+      }
+
+      @include respond-to-tv {
+        width: calc(24.47% - 30px);
+      }
+    }
+
+    .center-column {
+      width: 20%;
+      margin-bottom: 1rem;
+
+      @include respond-to-phone {
+        width: 100%;
+      }
+
+      @include respond-to-tablet {
+        width: 100%;
+      }
+
+      @include respond-to-desktop {
+        width: 65%;
+      }
+
+      @include respond-to-tv {
+        width: calc(24.47% - 30px);
+      }
+    }
+
+    .right-column {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9375rem;
+
+      @include respond-to-phone {
+        width: 100%;
+      }
+
+      @include respond-to-tablet {
+        width: 100%;
+      }
+
+      @include respond-to-desktop {
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0;
+        width: 100%;
+      }
+
+      @include respond-to-tv {
+        // width: calc(24.47% - 30px);
+      }
+    }
+
+
+    // @include respond-to-phone {
+    //   flex-direction: column;
+    //   width: 100%;
+    // }
+
+    // @include respond-to-tablet {
+    //   flex-direction: column;
+    //   width: 100%;
+    // }
+
+    // @include respond-to-desktop {
+    //   width: 100%;
+    // }
+
+    // @include respond-to-tv {
+    //   width: 100%;
+    // }
+  }
+}

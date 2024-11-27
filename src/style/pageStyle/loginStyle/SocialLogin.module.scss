@@ -1,0 +1,31 @@
+@import "../../mixins";
+
+// social login style file for facebook google linkedin 
+  
+  .facebook-login {
+    display: flex;
+    align-items: center;
+    gap: 4rem; 
+    text-align: center;
+    font-size: 0.9375rem; 
+  }
+
+  // linkdin style 
+  .Linkendin-container ,.facebook-container {
+    padding: 0.5rem 0.5rem; 
+    border: 1px solid $border-color;
+    border-radius: 6px;
+    display: flex;
+    margin: auto;
+    font-size: 0.9375rem;
+    cursor: pointer;
+  
+    &.gap {
+      gap: 4rem;
+    }
+  
+    &.rounded {
+      border-radius: 9999px;
+    }
+  }
+  

@@ -1,0 +1,184 @@
+@import "../mixins";
+
+// footer style file
+
+.footer {
+  background-color: $white;
+  color: $light;
+
+  &.footer--black {
+    background-color: $primary;
+    // color: $white;
+  }
+
+  .container {
+    width: 100%;
+    margin: 0% auto;
+    padding: 3rem 3rem 1.75rem 3rem;
+
+    @include respond-to-phone {
+      padding: 3rem 1rem 1.75rem 1rem;
+    }
+
+    @include respond-to-tv {
+      width: 90%;
+    }
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+
+    @include respond-to-phone {
+      display: block;
+    }
+
+    @include respond-to-tablet {
+      display: block;
+    }
+
+    @include respond-to-desktop {
+      display: block;
+    }
+
+    .center_footer {
+      display: flex;
+      gap: 6rem;
+      width: 80%;
+
+      .industry {
+        @include respond-to-phone {
+          width: 100%;
+        }
+      }
+
+      @include respond-to-phone {
+        margin-top: 2rem;
+        display: block;
+      }
+
+      @include respond-to-tablet {
+        margin-top: 2rem;
+        display: block;
+      }
+
+      @include respond-to-desktop {
+        margin-top: 3rem;
+        width: 100%;
+      }
+    }
+
+    .listAlign {
+      width: 40%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+
+      .secondList {
+        margin-top: 3.7rem;
+        margin-left: 1rem;
+
+        @include respond-to-phone {
+          margin: 0%;
+        }
+      }
+
+      @include respond-to-phone {
+        display: block;
+        width: 100%;
+        padding: 0%;
+      }
+
+      @include respond-to-tablet {
+        width: 100%;
+        padding: 0%;
+      }
+    }
+
+    .column {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+
+      &.logo {
+        justify-content: center;
+        width: 20%;
+
+        @include respond-to-phone {
+          width: 100%;
+        }
+
+        @include respond-to-tablet {
+          width: 100%;
+        }
+
+        @include respond-to-desktop {
+          width: 100%;
+        }
+
+        img {
+          width: 100%;
+          height: auto;
+
+          @include respond-to-tablet {
+            width: 50%;
+            margin: 0 auto;
+          }
+
+          @include respond-to-desktop {
+            width: 30%;
+            margin: 0 auto;
+          }
+        }
+      }
+
+      &.self-end {
+        align-self: flex-end;
+      }
+
+      @include respond-to-phone {
+        width: 100%;
+      }
+    }
+  }
+
+  .footer-bottom {
+    background-color: $border-ligher-color;
+
+    &.footer--black {
+      background-color: $secondary-color;
+      color: $white;
+    }
+
+    .footer-Aline {
+      width: 100%;
+      display: flex;
+      margin: 0% auto;
+      justify-content: space-between;
+      align-items: center;
+      height: 2.5rem;
+      padding: 0 3rem;
+
+      p {
+        font-size: 0.875rem;
+      }
+
+      a {
+        font-size: 0.875rem;
+
+        &.footer--black {
+          color: $white;
+        }
+      }
+
+      @include respond-to-phone {
+        padding: 0 1rem;
+      }
+
+      @include respond-to-tv {
+        width: 90%;
+      }
+    }
+  }
+}

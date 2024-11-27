@@ -1,0 +1,73 @@
+// mixin
+@import "../../../mixins";
+@import "../../profileStyle/aboutCard.module.scss";
+
+.tags-card {
+  margin-top: 0.9375rem;
+  width: 100%;
+  background-color: $white;
+  border: 1px solid $border-ligher-color;
+  box-shadow: 0px 3px 30px 0px $box-shadow-color;
+
+  .header {
+    display: flex;
+    align-items: center;
+
+    .user-image {
+      padding: 0;
+      width: 100%;
+      height: auto;
+    }
+
+    .header-content {
+      margin-left: 1rem;
+
+      .sub-header {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $border-ligher-color;
+        padding-bottom: 0.25rem;
+        margin-bottom: 1rem;
+
+        .title {
+          @extend .h6;
+          color: $secondary-color;
+          position: relative;
+
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -9px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: #23babc;
+          }
+        }
+
+        .edit-icon {
+          @extend %editIcon;
+        }
+
+        .add-icon {
+          @extend %editIcon;
+        }
+      }
+
+      .tags {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .tag {
+          color: $sky-color;
+          border: 1px solid $sky-color;
+          padding: 0.625rem 1rem;
+          border-radius: 9999px;
+          @include fontStyle(12, $sky-color , 500, 14.4px)
+        }
+      }
+    }
+  }
+}

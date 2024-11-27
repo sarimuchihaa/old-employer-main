@@ -1,0 +1,61 @@
+@import '../../mixins';
+
+//   social login scss
+.social-login-container {
+    background-color: $white;
+    width: 60%;
+    border-radius: 1.5rem; 
+    margin-bottom: 1.5rem;
+    padding-top: 2.75rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem; 
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  
+    .header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  
+      @include respond-to-phone{
+        display: block;
+      }
+
+      .title {
+        @include respond-to-phone{
+          margin-bottom: 1.5rem;
+         text-align: center; 
+        }
+
+      }
+  
+      .social-login {
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        gap: 0.75rem;
+
+        @include respond-to-phone{
+          margin: 0 auto;
+        }
+
+      }
+    }
+
+    @include respond-to-phone{
+      width: 90%;
+    }
+    @include respond-to-tablet{
+      width: 80%;
+    }
+    @include respond-to-desktop{
+      width:  70.83%;
+    }
+    @include respond-to-tv{
+      width: 50.83%;
+    }
+  }
+  
+
+  

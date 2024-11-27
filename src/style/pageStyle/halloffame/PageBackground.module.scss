@@ -1,0 +1,6 @@
+@import "../../mixins";
+
+.pageBackground {
+  background-color: $gray-color; // Use the gray color from _mixins.scss
+  min-height: 100vh; // Ensure it covers the full viewport height
+}

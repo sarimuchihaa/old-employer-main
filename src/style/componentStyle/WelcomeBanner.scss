@@ -1,0 +1,23 @@
+.hall-of-fame {
+  text-align: center;
+  padding: 20px;
+  background-color: transparent; // Ensure background is transparent
+
+  h1 {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold; // Make the text bold
+  }
+
+  .underline {
+    width: 50px;
+    height: 3px;
+    background-color: #008080;
+    margin: 8px auto;
+  }
+
+  p {
+    font-size: 16px;
+    color: #777;
+  }
+}

@@ -1,0 +1,30 @@
+// mixin styles
+@import "../mixins";
+
+// style file import from components folder comanies.module.scss
+@import "../componentStyle/companies.module.scss";
+// styles file
+.companiesExp-card {
+    @extend .companies-card;
+  
+    &.no-border {
+      border-bottom: 0;
+    }
+
+    .company-info {
+        @extend .company-info;
+  
+      .company-name {
+        @extend .textBold;
+      }
+  
+      .company-description {
+        @extend .company-description;
+      }
+  
+      .company-location {
+        @extend .company-location;
+      }
+    }
+  }
+  

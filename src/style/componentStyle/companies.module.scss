@@ -1,0 +1,43 @@
+// mixin styles
+@import "../mixins";
+
+// styles file
+.companies-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 1rem 0;
+    border-bottom: 1px solid $border-card-color; 
+  
+    &.no-border {
+      border-bottom: 0;
+    }
+  
+    // .company-image {
+    //   width: 50px;
+    //   height: 50px;
+    // }
+  
+    .company-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+  
+      .company-name {
+        @extend .textBold;
+      }
+  
+      .company-description {
+          @extend .smallText;
+          color: $light;
+      }
+  
+      .company-location {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        @extend .smallText;
+      }
+    }
+  }
+  

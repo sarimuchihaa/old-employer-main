@@ -1,0 +1,160 @@
+@import "../mixins";
+
+// style for banner components
+.background-section {
+  background: url("../../../public/assets/images/background.png");
+  background-size: cover;
+  width: 100%;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+}
+
+.inner-section {
+  display: flex;
+  align-items: end;
+  gap: 1.75rem;
+  padding: .5rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+
+  @include respond-to-phone {
+    width: 100%;
+  }
+
+  @include respond-to-tablet {
+    width: 95%;
+  }
+
+  @include respond-to-desktop {
+    width: 90%;
+  }
+
+  @include respond-to-tv {
+    width: 76.56%;
+  }
+}
+
+.avatar {
+  border-radius: 0.75rem;
+
+  @include respond-to-phone {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    left: .5rem;
+  }
+}
+
+.logo {
+  border-radius: 0.75rem;
+  background-color: white;
+  padding: 1rem;
+
+  @include respond-to-phone {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    left: .5rem;
+  }
+}
+
+.info-section {
+  display: flex;
+  width: 100%;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.user-info {
+  display: flex;
+  gap: 1.75rem;
+
+  // align-items: center;
+  &:first-of-type {
+    @include fontStyle(18px, $white-color, 500, 22.68px);
+    font-family: "Outfit";
+  }
+
+  span:last-of-type {
+    @include fontStyle(14px, $white-color, 400, 28px);
+    font-family: "Outfit";
+  }
+
+  @include respond-to-phone {
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .AndBar {
+      display: none;
+    }
+  }
+
+  @include respond-to-tablet {
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .AndBar {
+      display: none;
+    }
+  }
+}
+
+// Define a placeholder for reusable styles
+%follow-button-styles {
+  @extend .buttonVarient, .buttonVarient--primary;
+  padding: 0.5rem 1rem;
+  font-size: 12px;
+}
+
+.follow-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  @include respond-to-phone {
+    text-align: center;
+    gap: 1rem;
+    flex-direction: column-reverse;
+  }
+
+  @include respond-to-tablet {
+    text-align: center;
+    gap: 1rem;
+    flex-direction: column-reverse;
+  }
+
+  .followers {
+    @include fontStyle(16px, $white-color, 500, 19.2px);
+  }
+
+  .follow-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.4rem;
+    @extend %follow-button-styles;
+  }
+
+  .Short-List {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.4rem;
+    @extend %follow-button-styles;
+  }
+}
+
+// short list in banner
+.edit-section {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

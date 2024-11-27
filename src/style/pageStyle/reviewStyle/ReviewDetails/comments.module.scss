@@ -1,0 +1,164 @@
+@import "../../../mixins";
+
+.commentsSection {
+  padding: 20px;
+  // background-color: #fff;
+  // border-radius: 10px;
+  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  .commentInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+  }
+
+  .filter {
+    margin-bottom: 20px;
+    color: grey;
+    font-size: 14px;
+  }
+
+  .comment,
+  .reply {
+    display: flex;
+    margin-bottom: 20px;
+
+    .profilePic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .commentBody,
+    .replyBody {
+      flex: 1;
+
+      .commentHeader {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+
+        strong {
+          margin-right: 5px;
+          font-size: 14px;
+        }
+
+        .relation {
+          color: grey;
+          font-size: 12px;
+        }
+
+        .timeAgo {
+          margin-left: auto;
+          font-size: 12px;
+          color: grey;
+        }
+      }
+
+      .commentTitle {
+        font-size: 12px;
+        color: grey;
+        margin-bottom: 5px;
+      }
+
+      .commentText {
+        font-size: 14px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .commentActions {
+        font-size: 12px;
+        color: grey;
+
+        span {
+          margin-right: 10px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  @include respond-to-phone {
+    padding: 10px;
+
+    .commentInput {
+      padding: 8px;
+    }
+
+    .filter {
+      font-size: 12px;
+    }
+
+    .comment,
+    .reply {
+      .profilePic {
+        width: 30px;
+        height: 30px;
+      }
+
+      .commentBody,
+      .replyBody {
+        .commentHeader {
+          strong {
+            font-size: 12px;
+          }
+
+          .relation,
+          .timeAgo {
+            font-size: 10px;
+          }
+        }
+
+        .commentTitle,
+        .commentText,
+        .commentActions {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  @include respond-to-tablet {
+    padding: 15px;
+
+    .commentInput {
+      padding: 9px;
+    }
+
+    .filter {
+      font-size: 13px;
+    }
+
+    .comment,
+    .reply {
+      .profilePic {
+        width: 35px;
+        height: 35px;
+      }
+
+      .commentBody,
+      .replyBody {
+        .commentHeader {
+          strong {
+            font-size: 13px;
+          }
+
+          .relation,
+          .timeAgo {
+            font-size: 11px;
+          }
+        }
+
+        .commentTitle,
+        .commentText,
+        .commentActions {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+// mixin
+@import "../../mixins";
+
+// import styles from about styleing file
+@import "../profileStyle/aboutCard.module.scss";
+
+.Skill-card {
+//   margin-top: 0.9375rem;
+  @extend %centerSection;
+
+  .header {
+    @extend %header;
+
+    .sub-header {
+      @extend %sub-herader;
+
+      .title {
+        @extend %title;
+      }
+
+      .edit-icon {
+        @extend %editIcon;
+      }
+      .add-icon {
+        @extend %editIcon;
+      }
+    }
+  }  
+  .skills{
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+  
+      .skill{
+          color: $sky-color;
+          border: 1px solid $sky-color;
+          padding: 0.625rem 1rem;
+          border-radius: 9999px;
+          @include fontStyle(12 ,$sky-color , 500 , 14.4px)
+      }
+  }
+}
+
+
+

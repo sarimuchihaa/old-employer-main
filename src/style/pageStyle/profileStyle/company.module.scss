@@ -1,0 +1,75 @@
+// mixins file import
+@import "../../mixins";
+
+//profile company detail card file style
+.company-card {
+  @extend %card-style;
+
+  .help-icon {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0.625rem;
+    cursor: pointer;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+
+    .avatar {
+      margin-bottom: 0.25rem;
+    }
+
+    .company-name {
+      @extend .h6;
+      color: $secondary-color;
+    }
+
+    .location {
+      @extend .smallText;
+      color: $light;
+    }
+  }
+
+  .stats {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 1.75rem;
+
+    p {
+      width: 100%;
+      padding: 0.75rem 1.75rem;
+      @extend .location;
+
+      &:first-child {
+        text-align: right;
+        border-right: 2px solid $border-ligher-color;
+      }
+
+      span {
+        &:first-child {
+          color: $placeholder-color;
+        }
+      }
+
+      span:last-of-type {
+        margin-left: 0.125rem;
+        color: $sky-color !important;
+      }
+
+      @include respond-to-desktop {
+        padding: 0.75rem;
+      }
+
+      @include respond-to-tv {
+        padding: 0.75rem;
+      }
+    }
+  }
+
+  .no-info {
+    padding: 1rem;
+  }
+}

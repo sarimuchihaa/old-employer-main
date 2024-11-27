@@ -1,0 +1,25 @@
+//  mixin styles
+@import "../../mixins";
+
+@import "../../pageStyle//profileStyle/contactCard.module.scss";
+// style topcompanies styles
+.top-companies-card {
+  @extend %card-style;
+
+  .header {
+    @extend %headerStyle;
+
+    p {
+      @extend .h6;
+      color: $primary;
+    }
+  }
+
+  .companies-list {
+    @extend %contentStyle;
+  }
+
+  @include respond-to-desktop {
+    width: calc(50% - 15px);
+  }
+}

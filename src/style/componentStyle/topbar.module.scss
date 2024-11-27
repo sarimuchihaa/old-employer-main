@@ -1,0 +1,40 @@
+// mixin styles
+@import "../mixins";
+
+.topbar {
+    display: flex;                   
+    justify-content: flex-end;       
+    align-items: center;             
+    padding-left: 2rem;               
+    padding-right: 2rem;              
+    gap: 1.75rem;
+    height: 60px;                    
+  }
+  
+  .topbar-signup {
+    @extend .linking;                  
+  }
+  
+  .topbar-button {
+    @extend .buttonVarient , .buttonVarient--primary;
+    @extend .smallText;
+    color: $white;
+    padding: 0.5625rem 0.9375rem;    
+  }
+  
+  .profile-section {
+    display: flex;
+    gap: 0.75rem;                    
+    align-items: center;             
+  }
+  
+  .profile-image {
+    border-radius: 50%;              
+    width: 30px;
+    height: 30px;                    
+  }
+  
+  .dropdown-label {
+    @extend .linking;                
+  }
+  

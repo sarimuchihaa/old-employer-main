@@ -1,0 +1,21 @@
+// define breakPoint
+@import '../../mixins';
+
+// login main page index file
+.login-page {
+    display: flex;
+}
+
+.login-Img {
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+
+    @include respond-to-phone {
+        display: none;
+    }
+
+    @include respond-to-tablet {
+        display: none;
+    }
+}

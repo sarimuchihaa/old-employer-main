@@ -1,0 +1,29 @@
+@import "../mixins";
+// input.jsx file style
+
+
+.labelText {
+  margin-bottom: 11px;
+  @extend .input;
+  // font-size: 14px;
+  // color: #585858;
+}
+
+.input-Div {
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  padding: 0.8125rem 0.9375rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.input-bar {
+  @extend .inputBar;
+  width: 100%;
+  border: 0;
+
+  &:focus {
+    outline: none;
+  }
+}

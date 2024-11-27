@@ -1,0 +1,148 @@
+@import "../../mixins";
+
+$modal-bg: white;
+$overlay-bg: #000000E0;
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $overlay-bg; // Adjust as per your color variable
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px; // Added padding to avoid modal getting too close to the edges
+
+    .modalContent {
+        background: $modal-bg; // Adjust as per your color variable
+        padding: 1.5rem;
+        border-radius: 8px;
+        align-items: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 40%; // Reduce the modal's width
+        max-height: 80vh; // Limit the modal height to 80% of the viewport
+        overflow-y: auto; // Enable vertical scrolling for long content
+        position: relative;
+
+        .closeButton {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .svgs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .fileUploadLabel {
+            display: block;
+            margin-top: 1rem;
+
+            .uploadField {
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                .uploadIcon {
+                    position: absolute;
+                    margin-top: 0.8rem;
+                    left: 10px;
+                    font-size: 20px;
+                    color: #aaa;
+                }
+
+                .inputField {
+                    width: 70%;
+                    margin-top: 1rem;
+                    padding: 10px 15px 10px 40px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px 0 0 4px;
+                    font-size: 16px;
+                    outline: none;
+                    cursor: pointer;
+                }
+
+                .browseButton {
+                    width: 30%;
+                    background-color: $primary-color;
+                    color: white;
+                    border: none;
+                    margin-top: 1rem;
+                    border-radius: 0 4px 4px 0;
+                    cursor: pointer;
+                    padding: 10px;
+                    font-size: 16px;
+                    position: relative;
+                    overflow: hidden;
+
+                    &:hover {
+                        background-color: darken($primary-color, 10%);
+                    }
+
+                    input[type="file"] {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        opacity: 0;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .headerContent {
+            display: flex;
+            margin-top: 0.7rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        p {
+            display: flex;
+            margin-top: 0.7rem;
+            font-weight: 400;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .continueButton {
+            margin-top: 1.5rem;
+            width: 100%;
+            padding: 0.6rem;
+            background-color: $primary-color;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .modalContent {
+            width: 90%; // Make modal take more width on small screens
+        }
+    }
+}

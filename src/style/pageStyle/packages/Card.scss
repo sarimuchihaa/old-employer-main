@@ -1,0 +1,68 @@
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 450px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  font-family: Arial, sans-serif;
+
+  .icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+
+    .amount {
+      font-weight: bold;
+    }
+
+    .discount {
+      margin-left: 10px;
+      color: teal;
+      font-size: 1rem;
+    }
+  }
+
+  .upgrade-btn {
+    background-color: teal;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px 0;
+    width: 100%;
+  }
+
+  h3 {
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 8px;
+        color: green;
+      }
+    }
+  }
+}

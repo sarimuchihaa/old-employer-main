@@ -1,0 +1,92 @@
+@import "../../mixins";
+
+.review {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $border-ligher-color;
+
+    .content-container {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+
+        .center-column {
+            width: 100%;
+        }
+
+        .left-column {
+            width: 50%;
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
+            flex-grow: 1;
+
+            @include respond-to-phone {
+                width: 100%;
+            }
+
+            @include respond-to-tablet {
+                width: 100%;
+            }
+
+            @include respond-to-desktop {
+                width: calc(25% - 20px);
+            }
+
+            @include respond-to-tv {
+                width: calc(40% - 40px);
+            }
+        }
+
+        .right-column {
+            display: flex;
+            gap: 2rem;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        @include respond-to-phone {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        @include respond-to-tablet {
+            flex-direction: column;
+            width: 95%;
+        }
+
+        @include respond-to-desktop {
+            width: 90%;
+        }
+
+        @include respond-to-tv {
+            width: 76.56%;
+        }
+    }
+
+    // Add button container and button styles
+    .button-container {
+        display: flex;
+        justify-content: center;
+        width: 100%; // Make sure it spans across the entire form width
+        margin-top: 2rem; // Add some spacing from the form content
+    }
+
+    .submit-button {
+        padding: 7px 50px;
+        font-size: 16px;
+        margin-bottom: 3rem;
+        background-color: $sky-color;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: $primary-hover;
+        }
+    }
+}

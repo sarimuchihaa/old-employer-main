@@ -1,0 +1,28 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; // Add space between the parts
+  background-color: #e5e7eb;
+}
+
+.uppersection {
+  display: flex;
+  //justify-content: space-evenly;
+  gap: 1rem; // Add space between the parts
+  padding: 0 10%;
+}
+
+.newSection {
+  display: flex;
+  //justify-content: space-between;
+  gap: 50px; // Add space between the left and right sections
+  padding: 0 10%; // Leave 10% space on each side
+}
+
+//.leftSection {
+//  flex: 0 0 50%; // Allocate 50% of the remaining width to LatestVisitor
+//}
+
+//.rightSection {
+ // flex: 0 0 30%; // Allocate 30% of the remaining width to Activity
+//}

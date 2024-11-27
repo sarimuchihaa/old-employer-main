@@ -1,0 +1,35 @@
+//  mixin styles
+@import "../../mixins";
+
+@import "../../pageStyle/profileStyle/contactCard.module.scss";
+@import "../../pageStyle/profileStyle/aboutCard.module.scss";
+
+// style top Profile styles
+.top-profile-card {
+  @extend %card-style;
+
+  .header {
+    @extend %headerStyle;
+
+    .sub-header {
+      @extend %sub-herader;
+
+      .title {
+        @extend %title;
+      }
+    }
+
+    p {
+      @extend .h6;
+      color: $primary;
+    }
+  }
+
+  .profile-list {
+    @extend %contentStyle;
+  }
+
+  @include respond-to-desktop {
+    width: calc(50% - 15px);
+  }
+}

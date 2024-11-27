@@ -1,0 +1,55 @@
+@import '../../mixins';
+
+.faqAccordion {
+  max-width: 37.5rem; // 600px
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: $white-color;
+  border-radius: 0.5rem; // 8px
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); // 0 2px 4px
+  padding: 1.25rem; // 20px
+
+  h2 {
+    margin-bottom: 1.25rem; // 20px
+    @include fontStyle(1.5rem, $primary-color, 600, 1.8rem); // 24px, 28.8px
+    text-align: left;
+  }
+
+  .faqItem {
+    margin-bottom: 0.625rem; // 10px
+    border-bottom: 1px solid $border-light-color;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .faqQuestion {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    @include fontStyle(1.125rem, $sky-color, 700, 1.35rem); // 18px, 21.6px
+    padding: 0.625rem 0; // 10px 0
+    color: $black-light;
+
+    &.active {
+      color: $primary-color;
+    }
+  }
+
+  .faqAnswer {
+    padding: 0.625rem 0; // 10px 0
+    @include fontStyle(1rem, $black-light, 400, 1.2rem); // 16px, 19.2px
+  }
+
+  .faqIcon {
+    font-size: 1.5rem; // 24px
+    color: $sky-color;
+    width: 1.875rem; // 30px
+    height: 1.875rem; // 30px
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.125rem solid $sky-color; // 2px
+    border-radius: 50%;
+  }
+}

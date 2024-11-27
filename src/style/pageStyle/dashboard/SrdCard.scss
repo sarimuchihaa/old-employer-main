@@ -1,0 +1,56 @@
+.srd-card {
+  background-color: #1abc9c;
+  padding: 1.25rem;
+  /* 20px */
+  border-radius: 0.625rem;
+  /* 10px */
+  text-align: left;
+  /* Align text to the left */
+  color: white;
+  font-family: Arial, sans-serif;
+  /* Match the font-family with part1 */
+  height: 12.5rem;
+  /* 200px */
+  width: 25rem;
+  /* 400px */
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  /* 0 2px 4px */
+
+  h3 {
+    font-size: 1.5rem;
+    /* 24px */
+    margin-bottom: 0.625rem;
+    /* 10px */
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* Align items to the start (left) */
+    gap: 0.625rem;
+    /* 10px */
+    margin-bottom: 1.25rem;
+    /* 20px */
+  }
+
+  p {
+    font-size: 1rem;
+    /* 16px */
+    margin-bottom: 1.25rem;
+    /* 20px */
+  }
+
+  .update-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 0.625rem 1.25rem;
+    /* 10px 20px */
+    font-size: 1rem;
+    /* 16px */
+    border-radius: 0.25rem;
+    /* 4px */
+    cursor: pointer;
+  }
+}

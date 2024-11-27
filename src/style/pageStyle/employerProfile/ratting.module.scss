@@ -1,0 +1,186 @@
+// mixin styles
+@import "../../mixins";
+
+// styles for contactInfoCard
+%headerStyle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1rem;
+  // border-bottom: 1px solid $border-card-color;
+}
+
+%contentStyle {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 1.25rem;
+  margin-top: 1rem;
+}
+
+%header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+%sub-herader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $border-ligher-color;
+  padding-bottom: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+%title {
+  width: 100%;
+  @extend .h6;
+  margin-left: 0.5rem;
+  color: $secondary-color;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #23babc;
+  }
+}
+
+.contact-container {
+  @extend %card-style;
+  // margin: 1rem 0;
+  padding: 1rem;
+
+  .header {
+    @extend %headerStyle;
+
+    .title {
+      @extend .h6;
+      color: $lable-color;
+
+    }
+
+    .add-icon {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+      color: $primary_color;
+      cursor: pointer;
+    }
+  }
+
+  .header {
+    @extend %header;
+
+    .sub-header {
+      @extend %sub-herader;
+
+      .title {
+        @extend %title;
+      }
+    }
+  }
+
+
+  .chart-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+
+    @include respond-to-phone {
+      width: 100%;
+    }
+
+    @include respond-to-tablet {
+      width: 100%;
+    }
+
+    @include respond-to-desktop {
+      width: calc(80% - 20px);
+    }
+
+    @include respond-to-tv {
+      width: calc(80% - 45px);
+    }
+  }
+
+  .pie-chart {
+    flex: 1;
+    /* Centers the chart */
+    display: flex;
+    justify-content: center;
+  }
+
+  .chart-labels {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    /* Space between chart and labels */
+  }
+
+  .label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .color-box {
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+    border-radius: 2px;
+  }
+
+  .rating {
+    display: flex;
+    justify-content: space-between;
+
+    .rating-item {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid $border-ligher-color;
+
+      .rating-label {
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      .rating-content {
+        display: flex;
+        align-items: center;
+
+        .stars {
+          display: flex;
+
+
+          span {
+            font-size: 1.5rem;
+          }
+        }
+
+        .rating-button {
+          background-color: $sky-color;
+          border: none;
+          color: white;
+          padding: 0.3rem 1rem;
+          border-radius: 5px;
+          font-size: 1rem;
+          margin-left: 1rem;
+          margin-right: 1rem;
+        }
+      }
+
+    }
+  }
+
+}

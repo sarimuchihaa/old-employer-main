@@ -1,0 +1,43 @@
+// mixin styles
+@import "../../mixins";
+
+// styles import for contactInfoCard
+@import "../../pageStyle//profileStyle/contactCard.module.scss";
+
+.Resume-container {
+  @extend %card-style;
+  margin: 1rem 0;
+
+  .header {
+    @extend %headerStyle;
+
+    .title {
+      @extend .h6;
+      color: $lable-color;
+    }
+
+    .edit-icon {
+      cursor: pointer;
+    }
+  }
+
+  .content {
+    @extend %contentStyle;
+
+    .item {
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      @extend .smallText;
+      color: $primary;
+      span:nth-child(2){
+        width: 60%;
+      }
+      span:nth-child(3){
+        @extend .smallText;
+        color: $light;
+      }
+    }
+  }
+}

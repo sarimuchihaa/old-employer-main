@@ -1,0 +1,108 @@
+// src/style/componentStyle/HallOfFameCard.module.scss
+@import "../../../mixins";
+
+
+.user-reviews {
+  padding-top: 1rem;
+  background-color: $border-ligher-color;
+  justify-content: center;
+  display: flex;
+  padding-bottom: 1rem;
+
+
+  .review-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+
+
+    .review-card {
+
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: $white;
+      padding: 1.875rem 2rem;
+      border: 1px solid $border-ligher-color;
+      border-radius: 0.5rem;
+      box-shadow: 0px 3px 30px 0px $box-shadow-color;
+
+      .content {
+        cursor: pointer;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+
+        .logo {
+          width: 100%;
+          height: 100%;
+        }
+
+        .name {
+          flex-grow: 1;
+          font-size: 16px;
+          color: #333;
+        }
+
+        .stars {
+          display: flex;
+
+
+          span {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+
+        .ratings {
+          display: flex;
+          gap: 2rem;
+
+          .ratingItem {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            cursor: pointer;
+          }
+
+          .rating-button {
+            background-color: $sky-color;
+            border: none;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-left: 1rem;
+            margin-right: 1rem;
+          }
+        }
+      }
+    }
+
+    @include respond-to-phone {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    @include respond-to-tablet {
+      flex-direction: column;
+      width: 95%;
+    }
+
+    @include respond-to-desktop {
+      width: 90%;
+    }
+
+    @include respond-to-tv {
+      width: 76.56%;
+    }
+
+  }
+
+}

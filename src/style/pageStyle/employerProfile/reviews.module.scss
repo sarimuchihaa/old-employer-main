@@ -1,0 +1,93 @@
+// mixin styles
+@import"../../mixins";
+
+// styles file
+.profiles-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid $border-card-color;
+  cursor: pointer;
+
+  &.no-border {
+    border-bottom: 0;
+  }
+
+  .rounded-lg {
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    width: 25%;
+    height: 30%;
+    object-fit: cover;
+  }
+
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .profile-name {
+      @extend .textBold;
+    }
+
+    .user-profile {
+      display: flex;
+      justify-content: space-between;
+
+      .profile-description {
+        @extend .smallText;
+        color: $light;
+      }
+
+      .profile-country {
+        @extend .smallText;
+        color: $light;
+        text-align: end;
+      }
+    }
+
+
+    .rattings {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .stars {
+      display: flex;
+    }
+
+    .rating-button {
+      background-color: $sky-color;
+      border: none;
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 5px;
+      font-size: 0.7rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+
+
+
+    .profile-location {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      @extend .smallText;
+    }
+  }
+
+  // .rounded-lg {
+  //   border-radius: 50%;
+  //   background-color: white;
+  //   border: 1px solid #ddd;
+  //   overflow: hidden;
+  //   width: 25%;
+  //   height: 30%;
+  //   object-fit: cover;
+  // }
+
+}

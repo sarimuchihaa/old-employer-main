@@ -1,0 +1,39 @@
+@import "../../mixins";
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: $white-color;
+  border-radius: 8px;
+  text-align: left;
+
+  .header-icon {
+    margin-right: 20px;
+  }
+
+  .header-content {
+    flex: 1;
+
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0 0 8px 0;
+    }
+
+    .underline {
+      width: 50px;
+      height: 3px;
+      background-color: $primary-color;
+      margin-bottom: 10px;
+      border-radius: 2px;
+    }
+
+    .description {
+      font-size: 14px;
+      color: $secondary-color;
+      line-height: 1.5;
+    }
+  }
+}

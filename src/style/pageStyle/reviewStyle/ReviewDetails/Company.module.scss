@@ -1,0 +1,139 @@
+// mixin
+@import "../../../mixins";
+
+// import styles from about styleing file
+@import "../../profileStyle/aboutCard.module.scss";
+@import "../../../pageStyle//profileStyle/contactCard.module.scss";
+
+.tags-card {
+    margin-top: 0.9375rem;
+    width: 100%;
+    background-color: $white;
+    border: 1px solid $border-ligher-color;
+    box-shadow: 0px 3px 30px 0px $box-shadow-color;
+
+    .header {
+        display: flex;
+        align-items: center;
+
+        .company-logo {
+            padding: 1rem;
+            border-right: 2px solid #EAF0FF;
+        }
+
+        .header-content {
+            margin-left: 1rem;
+
+            .sub-header {
+                // width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid $border-ligher-color;
+                padding-bottom: 0.25rem;
+                margin-bottom: 1rem;
+
+                .title {
+                    @extend %title;
+                }
+
+                .edit-icon {
+                    @extend %editIcon;
+                }
+
+                .add-icon {
+                    @extend %editIcon;
+                }
+            }
+
+            .header-buttons {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .btn-join {
+                @extend .buttonVarient, .buttonVarient--primary;
+                width: 100%;
+            }
+        }
+
+
+    }
+
+}
+
+.totalReviews {
+    background-color: white;
+    padding: 1rem;
+    border: 1px solid $border-ligher-color;
+}
+
+// %headers {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     padding: 1.25rem 1rem 0.1rem 1rem;
+// }
+
+// %content {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 1rem;
+//     padding: 0 1.25rem;
+//     // margin-top: 1rem;
+// }
+
+// %title-icon {
+//     @extend .h6;
+//     // margin-left: 0.5rem;
+//     color: $secondary-color;
+//     position: relative;
+
+//     &::after {
+//         content: "";
+//         position: absolute;
+//         bottom: -9px;
+//         left: 0;
+//         width: 40px;
+//         height: 3px;
+//         background-color: #23babc;
+//     }
+// }
+
+// style top Profile styles
+// .top-profile-card {
+//     @extend %card-style;
+
+//     .profile-list {
+//         @extend %content;
+//     }
+
+//     @include respond-to-desktop {
+//         width: calc(50% - 15px);
+//     }
+// }
+
+.rounded-lg {
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    width: 25%;
+    height: 30%;
+    object-fit: cover;
+}
+
+.top-profile-card {
+    width: 100%;
+    border: 1px solid $border-ligher-color;
+    background-color: $white-color;
+
+    .profile-list {
+        @extend %contentStyle;
+    }
+
+    @include respond-to-desktop {
+        width: calc(50% - 15px);
+    }
+}

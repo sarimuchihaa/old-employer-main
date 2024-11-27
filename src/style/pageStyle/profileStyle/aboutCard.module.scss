@@ -1,0 +1,65 @@
+// mixin file import  style
+@import "../../mixins";
+
+%header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+%sub-herader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $border-ligher-color;
+  padding-bottom: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+%title {
+  width: 100%;
+  @extend .h6;
+  margin-left: 0.5rem;
+  color: $secondary-color;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #23babc;
+  }
+}
+
+%editIcon {
+  cursor: pointer;
+}
+
+.about-card {
+  @extend %centerSection;
+
+  .header {
+    @extend %header;
+
+    .sub-header {
+      @extend %sub-herader;
+
+      .title {
+        @extend %title;
+      }
+
+      .edit-icon {
+        @extend %editIcon;
+      }
+    }
+  }
+
+  .description {
+    @extend .p;
+    color: $light;
+  }
+}

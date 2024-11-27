@@ -1,0 +1,26 @@
+//  mixin styles
+@import "../../mixins";
+
+@import "../../pageStyle//profileStyle/contactCard.module.scss";
+// style top Profile styles
+.peopleKnow-card {
+  @extend %card-style;
+
+  .header {
+    @extend %headerStyle;
+
+    p {
+      @extend .h6;
+      color: $primary;
+    }
+  }
+
+  .peopleKnow-list {
+    @extend %contentStyle;
+  }
+
+  @include respond-to-desktop {
+    margin-top: 30px;
+    width: calc(50% - 15px);
+  }
+}

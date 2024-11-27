@@ -1,0 +1,31 @@
+// mixin
+@import "../../mixins";
+
+// import styles from about styleing file
+@import "../profileStyle/aboutCard.module.scss";
+
+.Experience-card {
+  margin-top: 0.9375rem;
+  @extend %centerSection;
+
+  .header {
+    @extend %header;
+
+    .sub-header {
+      @extend %sub-herader;
+
+      .title {
+        @extend %title;
+      }
+
+      .edit-icon {
+        @extend %editIcon;
+      }
+      .add-icon {
+        @extend %editIcon;
+      }
+    }
+  }
+
+
+}

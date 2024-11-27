@@ -1,0 +1,42 @@
+// mixin style
+@import "../mixins";
+
+// language drawer
+.Drawer-para {
+  margin-bottom: 3rem !important;
+}
+
+.Drawer {
+  margin-top: 1rem;
+  label {
+    display: block;
+    @extend .textBold;
+  }
+  .textarea {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border: 1px solid $border-ligher-color;
+    border-radius: 0.25rem;
+    resize: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+// eduction drawer
+.Input-margin {
+  margin-bottom: 0.75rem;
+}
+.checkOption {
+  display: flex;
+  gap: 0.75rem;
+  padding-left: 0.75rem; 
+  padding-right: 0.75rem; 
+  align-items: center;
+  margin-bottom: 0.75rem; 
+  @extend .smallText;
+  color: $light;
+}

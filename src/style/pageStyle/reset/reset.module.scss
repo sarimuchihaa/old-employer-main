@@ -1,0 +1,40 @@
+@import "../loginStyle/login.module.scss";
+@import "../loginStyle/Form.module.scss";
+
+// reset page style
+.reset-page {
+  @extend .login-page;
+}
+
+.reset-Img {
+  @extend .login-Img;
+}
+
+// reset form style
+.form-container {
+  @extend .form-container;
+}
+
+.form-content {
+  @extend .form-content;
+}
+
+.form-description {
+  @extend .form-description;
+}
+
+.input-container {
+  @extend .input-container;
+}
+
+.button-container {
+  @extend .button-container;
+}
+
+.reset-up-text {
+  @extend .sign-up-text;
+}
+
+.reset-up-link {
+  @extend .sign-up-link;
+}

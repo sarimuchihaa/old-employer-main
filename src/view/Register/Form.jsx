@@ -76,14 +76,13 @@ const Form = () => {
         Join the OldEmployer Family!
       </h3>
       <p className={`${styles['header-subtitle']} ${styles['p']}`}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        incididunt ut labore et dolore magna aliqua.
+      Join the OldEmployer Family and take your career to new heights with trusted opportunities and the growth.
       </p>
       <div className={`${styles['form-content']}`}>
         <div className={`${styles['input-group']}`}>
           <Input
             label={"First name"}
-            placeholder={"Enter your first name"}
+            placeholder={"Example: Johan"}
             containerClassName={`${styles['input-width']}`}
             value={inputs.firstname}
             onChange={handleInputChange}
@@ -91,7 +90,7 @@ const Form = () => {
           />
           <Input
             label={"Last name"}
-            placeholder={"Enter your last name"}
+            placeholder={"Example: Smith"}
             containerClassName={`${styles['input-width']}`}
             value={inputs.lastname}
             onChange={handleInputChange}
@@ -101,8 +100,8 @@ const Form = () => {
 
         <div className={`${styles['input-group']}`}>
           <Input
-            label={"Enter email address"}
-            placeholder={"Enter your Email"}
+            label={"Email address"}
+            placeholder={"Enter your email"}
             containerClassName={`${styles['input-width']}`}
             value={inputs.email}
             onChange={handleInputChange}

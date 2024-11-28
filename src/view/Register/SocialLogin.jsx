@@ -11,10 +11,10 @@ const SocialLogin = () => {
     <div className={`${styles['social-login-container']}`}>
       <div className={`${styles['header']}`}>
         <p className= {`${styles['title']} ${styles['h5']}`}>
-          Join with socialmedia
+          Join with social media
         </p>
         <div className={`${styles['social-login']}`}>
-          <GoogleOAuth type={"icon"} shape={"circle"} />
+          <GoogleOAuth  shape={"circle"} />
           <FacebookOAuth />
           <LinkedinOAuth />
         </div>

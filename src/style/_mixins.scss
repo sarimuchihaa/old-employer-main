@@ -153,7 +153,7 @@ $secondary-hover: #0A0A0A;
   background-color: $bg;
   border: $border;
   color: $color;
-  transition: background-color 0.3s ease, transform 0.3s ease; // Smooth transitions
+  transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 
 // Button Variants
@@ -169,8 +169,8 @@ $secondary-hover: #0A0A0A;
     @include btn-varient($sky-color, none, $white);
 
     &:hover {
-      background-color: darken($sky-color, 10%); // Slightly darker on hover
-      transform: scale(1.05); // Slight enlargement
+      background-color: darken($sky-color, 10%); 
+      transform: scale(1.05);
     }
   }
 
@@ -178,8 +178,8 @@ $secondary-hover: #0A0A0A;
     @include btn-varient(none, 1px solid $sky-color, $sky-color);
 
     &:hover {
-      background-color: $sky-color; // Background becomes sky-color
-      color: $white; // Text becomes white
+      background-color: $sky-color; 
+      color: $white; 
     }
   }
 
@@ -187,8 +187,8 @@ $secondary-hover: #0A0A0A;
     @include btn-varient(#dc2626, none, $white);
 
     &:hover {
-      background-color: darken(#dc2626, 10%); // Darker red on hover
-      transform: translateY(-2px); // Subtle upward motion
+      background-color: darken(#dc2626, 10%); 
+      transform: translateY(-2px); 
     }
   }
 }

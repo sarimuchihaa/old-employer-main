@@ -1,8 +1,11 @@
 import React from 'react'
+import ShowCompanies from '../../../view/Companies/index'
 
 const Company = () => {
   return (
-    <h1>Cards</h1>
+    <>
+     <ShowCompanies />
+    </>
   )
 }
 

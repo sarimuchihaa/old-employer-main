@@ -20,9 +20,8 @@ const parseJwt = (token) => {
 const getCompanyData = async () => {
     const token = JSON.parse(localStorage.getItem("token"));
     http.setAccessToken(token.token);
-
     try {
-        const response = await http.get(company.view);
+        const response = await http.get(company.viewall);
         return response.data;
     } catch (error) {
         console.error("Error fetching user data:", error);

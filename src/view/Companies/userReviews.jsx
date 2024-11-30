@@ -1,18 +1,18 @@
 "use client";
 import React, { useState, useEffect, useId } from "react";
-import { DislikeIcon, LikeIcon, UnverifiedIcon, VerifiedIcon } from "../../../icon";
+import { DislikeIcon, LikeIcon, UnverifiedIcon, VerifiedIcon } from "../../icon";
 // import styles from "../../../style/pageStyle/profileStyle/aboutCard.module.scss";
-import styles from "../../../style/pageStyle/profileStyle/UserReviews/userReviews.module.scss";
+import styles from "../../style/pageStyle/profileStyle/UserReviews/userReviews.module.scss";
 import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
-import { getReviewDataByUser } from "../../../services/review";
-import { getSingleCompanyData } from "../../../services/company";
-import { getUserId } from "../../../services/user";
+import { getReviewDataByUser } from "../../services/review";
+import { getSingleCompanyData } from "../../services/company";
+import { getUserId } from "../../services/user";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from "next/navigation";
-import VerificationModal from "../../Review/Popups/VerifyReview";
-import { verifyReview } from '../../../services/review';
+import VerificationModal from "../Review/Popups/VerifyReview";
+import { verifyReview } from '../../services/review';
 
 const UserReviews = () => {
     const searchParams = useSearchParams();

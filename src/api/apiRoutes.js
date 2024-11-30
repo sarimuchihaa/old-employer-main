@@ -14,6 +14,7 @@ const company = {
   view: "/company/single",
   search: "/company/filters",
   singleview: "/company/single",
+  viewall: "/company/all-companies",
 };
 
 const review = {

@@ -17,6 +17,7 @@ const parseJwt = (token) => {
     }
 };
 
+
 const getCompanyData = async () => {
     const token = JSON.parse(localStorage.getItem("token"));
     http.setAccessToken(token.token);
@@ -28,6 +29,19 @@ const getCompanyData = async () => {
         throw error;
     }
 };
+
+
+// const getCompanyData = async () => {
+//     const token = JSON.parse(localStorage.getItem("token"));
+//     http.setAccessToken(token.token);
+//     try {
+//         const response = await http.get(company.viewall);
+//         return response.data;
+//     } catch (error) {
+//         console.error("Error fetching user data:", error);
+//         throw error;
+//     }
+// };
 
 const getSingleCompanyData = async (companyId) => {
     const token = JSON.parse(localStorage.getItem("token"));

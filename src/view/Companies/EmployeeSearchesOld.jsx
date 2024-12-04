@@ -11,7 +11,7 @@ import { DislikeIcon, GridIcon, LikeIcon, ListIcon, LocationIcon, SearchIcon } f
 import Pagination from "../../dump/Pagination";
 
 
-const EmployeeSearches = () => {
+const EmployeeSearchesOld = () => {
     const router = useRouter();
     const industries = ['IT', 'Finance', 'Healthcare', 'Education', 'Retail'];
     const sizes = ['1-10', '11-50', '51-100', '101-200', '200-500', '500-1000', '1000+'];
@@ -109,9 +109,8 @@ const EmployeeSearches = () => {
                 }
 
                 const data = await response.json();
-                console.log("Response Data:", data);
                 setCompanies(data);
-                console.log("Updated Companies State:", companies);
+                console.log("Response Data:", data);
             } catch (err) {
                 console.error("Error fetching companies:", err.message);
                 setError(err.message);
@@ -287,7 +286,7 @@ const EmployeeSearches = () => {
                     />
                 </div>
                 <div className={styles["columns-container"]}>
-                    <div>
+                    <div className={styles["left-column"]}>
                         <div className={styles["filter-group"]}>
                             <label className={styles["filters-search"]}>
                                 {inputs?.country && (
@@ -353,134 +352,104 @@ const EmployeeSearches = () => {
                                             </span>
                                         ));
 
+                    return viewType === "grid" ? (
+                        <>
+                        {/* COMPANY */}
+                        <div
+                            key={company.id}
+                            className={styles["company-card"]}
+                            onClick={() => handleCompanyClick(company.id)}
+                        >
+                        <div className={styles["company-logo"]}>
+                            <img src={logoUrl} alt="Logo" />
+                            <h4>{company.name}</h4>
+                            <div className={styles["stars"]}>{stars}</div>
+                        </div>
+                            {company.Reviews.length > 0 ? (
+                        <>
+                            {company.Reviews.map((review) => (
+                            <div key={review.id} className={styles["company-info"]}>
+                            <div>
+                                <LikeIcon />
+                                <p>{company.goodCount}</p>
+                            </div>
+                            <div>
+                                <DislikeIcon />
+                                <p>{company.notGoodCount}</p>
+                            </div>
+                             <p>{company.country}</p>
 
-return viewType === "grid" ? (
-    // GRID
-<>
-{/* COMPANY */}
-<div
-key={company.id}
-className={styles["company-card"]}
-onClick={() => handleCompanyClick(company.id)}
->
-<div className={styles["company-logo"]}>
-    <img src={logoUrl} alt="Logo" />
-    <h4>{company.name}</h4>
-    <div className={styles["stars"]}>{stars}</div>
-</div>
-                                          
-{company.Reviews?.length > 0 || company.Endows?.length > 0 ? (
-  <>
-    {(() => {
-      // Initialize counts
-      let goodCount = 0;
-      let notGoodCount = 0;
-
-      // Count "good" and "not-good" from Reviews
-      company.Reviews?.forEach((review) => {
-        if (review.emp_thougts === "good") {
-          goodCount += 1;
-        } else if (review.emp_thougts === "not-good") {
-          notGoodCount += 1;
-        }
-      });
-
-      // Count "good" and "not-good" from Endows
-      company.Endows?.forEach((endow) => {
-        if (endow.emp_thougts === "good") {
-          goodCount += 1;
-        } else if (endow.emp_thougts === "not-good" || endow.emp_thougts === "bad") {
-          notGoodCount += 1;
-        }
-      });
-
-      return (
-        <div className={styles["company-info"]}>
-          {/* Display counts */}
-          <div>
-            <LikeIcon />
-            <p>{goodCount}</p> {/* Total "good" thoughts */}
-          </div>
-          <div>
-            <DislikeIcon />
-            <p>{notGoodCount}</p> {/* Total "not-good" thoughts */}
-          </div>
-
-          {/* Country */}
-          <p>{company.country}</p>
-
-          {/* Ratings Section */}
-          <div className={styles["ratings"]}>
-            <button className={styles["rating-button"]}>
-              {company.calculatedOverallRating || "N/A"}
-            </button>
-            <p>Overall Rating</p>
-            <p>
-              {company.Reviews[0]?.emp_thougts ||
-                company.Endows[0]?.emp_thougts ||
-                "No thoughts provided"}
-            </p>
-          </div>
-        </div>
-      );
-    })()}
-  </>
-) : (
-  <p>No reviews or endows available</p>
-)}
-</div>
-                                          
-    <div className={styles["ad-card"]}>
+                        {/* RATINGS */}
+                     <div className={styles["ratings"]}>
+                        <button className={styles["rating-button"]}>
+                         {company.calculatedOverallRating}
+                        </button>
+                         <p>Overall Rating</p>
+                         <p>{review.emp_thougts}</p>
+                      </div>
+                    </div>
+                    ))}
+      <div
+        className={styles["ad-card"]}
+        style={{
+          backgroundColor: "#1C9596",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <p style={{ textAlign: "center" }}>Add here</p>
+      </div>
+    </>
+  ) : (
+    <p>No reviews available</p>
+  )}
 </div>
-    </>
-    )
-    
-    
-    : 
-    (
-    // LIST
-    <>
-<div key={company.id} className={styles["review-card"]} onClick={() => handleCompanyClick(company.id)}>
-    <div className={styles["content"]}>
-            <div className={styles["company-logo"]}>
-                <img src={logoUrl} alt="Logo" />
-            </div>
-           <div className={styles.name}>
-               <p>{company.name || "Company Name Not Available"}</p>
-               <div className={styles["stars"]}>{stars}</div>
-           </div>
-    </div>
-    
-    <div className={styles.actions}>
-           <div className={styles.ratings}>
-                <div className={styles.ratingItem}>
-                <p>{company.country}</p>
-            </div>
-            <div className={styles.ratingItem}>
-                <button className={styles["rating-button"]}>{company.calculatedOverallRating}</button>
-                <p>Overall Ratings</p>
-            </div>
-    </div>
-           <div>
-                <LikeIcon />
-                <p>{company.goodCount}</p>
-            </div>
-            <div>
-                <DislikeIcon />
-                <p>{company.notGoodCount}</p>
-            </div>
-    </div>
-    </div>
-    <div className={styles["vertical-ad-card"]}>
-            <p>Add here...</p>
-    </div>
-    </>
-    );
-    })
-) : (
-    <p>No companies found based on the search criteria.</p>
-)}
+                                            </>
+
+                                        ) : (
+                                            <>
+                                                <div key={company.id} className={styles["review-card"]} onClick={() => handleCompanyClick(company.id)}>
+                                                    <div className={styles["content"]}>
+                                                        <div className={styles["company-logo"]}>
+                                                            <img src={logoUrl} alt="Logo" />
+                                                        </div>
+                                                        <div className={styles.name}>
+                                                            <p>{company.name || "Company Name Not Available"}</p>
+                                                            <div className={styles["stars"]}>
+                                                                {stars}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className={styles.actions}>
+                                                        <div className={styles.ratings}>
+                                                            <div className={styles.ratingItem}>
+                                                                <p>{company.country}</p>
+                                                            </div>
+                                                            <div className={styles.ratingItem}>
+                                                                <button className={styles["rating-button"]}>{company.calculatedOverallRating}</button>
+                                                                <p>Overall Ratings</p>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <LikeIcon />
+                                                            <p>{company.goodCount}</p>
+                                                        </div>
+                                                        <div>
+                                                            <DislikeIcon />
+                                                            <p>{company.notGoodCount}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className={styles["vertical-ad-card"]}>
+                                                    <p>Add here...</p>
+                                                </div>
+                                            </>
+                                        );
+                                    })
+                                ) : (
+                                    <p>No companies found based on the search criteria.</p>
+                                )}
 
                                 <Pagination />
 
@@ -496,4 +465,4 @@ onClick={() => handleCompanyClick(company.id)}
     );
 };
 
-export default EmployeeSearches;
+export default EmployeeSearchesOld;

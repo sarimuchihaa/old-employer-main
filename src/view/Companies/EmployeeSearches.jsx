@@ -412,18 +412,18 @@ onClick={() => handleCompanyClick(company.id)}
           {/* Ratings Section */}
           <div className={styles["ratings"]}>
             <button className={styles["rating-button"]}>
-              {company.calculatedOverallRating || "N/A"}
+              {/* Display calculatedOverallRating if it exists, otherwise "N/A" */}
+              {company.Reviews[0]?.calculatedOverallRating 
+                ? (parseFloat(company.Reviews[0]?.calculatedOverallRating) || 0).toFixed(1)
+                : "N/A"}
             </button>
             <p>Overall Rating</p>
-            <p>
-              {company.Reviews[0]?.emp_thougts ||
-                company.Endows[0]?.emp_thougts ||
-                "No thoughts provided"}
-            </p>
           </div>
         </div>
       );
     })()}
+
+
   </>
 ) : (
   <p>No reviews or endows available</p>
@@ -464,11 +464,10 @@ onClick={() => handleCompanyClick(company.id)}
     </div>
            <div>
                 <LikeIcon />
-                <p>{company.goodCount}</p>
+
             </div>
             <div>
                 <DislikeIcon />
-                <p>{company.notGoodCount}</p>
             </div>
     </div>
     </div>

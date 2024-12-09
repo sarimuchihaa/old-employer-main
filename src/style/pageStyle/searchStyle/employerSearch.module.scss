@@ -4,13 +4,13 @@
   padding-top: 4rem;
   padding-bottom: 4rem;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   background-color: $border-ligher-color;
 
   .content-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     flex-wrap: wrap;
     width: 100%;
   }
@@ -34,7 +34,7 @@
     // max-width: 1200px;
     background-color: $white;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     border-radius: 0.5rem;
     padding-right: 1.5rem;
@@ -422,7 +422,6 @@
             border-radius: 0.5em;
             cursor: pointer;
           }
-
         }
 
       }
@@ -618,7 +617,7 @@
         justify-content: space-between;
         background-color: $white;
         padding: 1.5rem 2rem;
-        border: 1px solid $border-ligher-color;
+        border: 1px solid white;
         border-radius: 0.5rem;
         box-shadow: 0px 3px 30px 0px $box-shadow-color;
 
@@ -631,12 +630,10 @@
           .company-logo {
             display: flex;
             flex-direction: column;
-            gap: 0.7rem;
-            padding-right: 1.5rem;
 
             img {
-              width: 100px;
-              height: 100px;
+              width: 20px;
+              height: 20px;
             }
           }
 
@@ -693,9 +690,9 @@
       }
 
       .company-card {
-        width: 50%;
         display: flex;
-        justify-content: space-between;
+        width: 40%;
+        justify-content: start;
         align-items: center;
         text-align: center;
         padding: 2rem;
@@ -733,8 +730,6 @@
         .company-info {
           display: flex;
           flex-direction: column;
-          align-items: flex-end;
-          gap: 0.5rem;
 
           .rattings {
             display: flex;

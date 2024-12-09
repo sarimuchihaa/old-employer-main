@@ -11,7 +11,7 @@ import { DislikeIcon, GridIcon, LikeIcon, ListIcon, LocationIcon, SearchIcon } f
 import Pagination from "../../dump/Pagination";
 
 
-const EmployeeSearchesOld = () => {
+const EmployeeSearches = () => {
     const router = useRouter();
     const industries = ['IT', 'Finance', 'Healthcare', 'Education', 'Retail'];
     const sizes = ['1-10', '11-50', '51-100', '101-200', '200-500', '500-1000', '1000+'];
@@ -48,7 +48,7 @@ const EmployeeSearchesOld = () => {
     const handleCompanyClick = (companyId) => {
         router.push(`/employerProfile?companyId=${companyId}`);
     };
-    console.log("Current Inputs:", inputs);
+    // console.log("Current Inputs:", inputs);
 
     useEffect(() => {
         // Load cities and countries data
@@ -92,7 +92,7 @@ const EmployeeSearchesOld = () => {
 
     const getCompanyData = async () => {
         const response = await fetch("http://localhost:8000/company/all-companies");
-        console.log("getCompanyData Response:", response);
+        // console.log("getCompanyData Response:", response);
         return response;
     };
 
@@ -102,15 +102,16 @@ const EmployeeSearchesOld = () => {
         const fetchCompanies = async () => {
             try {
                 const response = await getCompanyData();
-                console.log("Fetched Response:", response);
+                // console.log("Fetched Response:", response);
 
                 if (!response || !response.ok) {
                     throw new Error(`HTTP error! Status: ${response?.status || "No response"}`);
                 }
 
                 const data = await response.json();
+                // console.log("Response Data:", data);
                 setCompanies(data);
-                console.log("Response Data:", data);
+                // console.log("Updated Companies State:", companies);
             } catch (err) {
                 console.error("Error fetching companies:", err.message);
                 setError(err.message);
@@ -119,7 +120,7 @@ const EmployeeSearchesOld = () => {
 
         fetchCompanies();
     }, []);
-    console.log("Companies data:", companies);
+    // console.log("Companies data:", companies);
 
     const handleInputChange = (e) => {
         setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -286,7 +287,7 @@ const EmployeeSearchesOld = () => {
                     />
                 </div>
                 <div className={styles["columns-container"]}>
-                    <div className={styles["left-column"]}>
+                    <div>
                         <div className={styles["filter-group"]}>
                             <label className={styles["filters-search"]}>
                                 {inputs?.country && (
@@ -339,117 +340,219 @@ const EmployeeSearchesOld = () => {
                                             logoUrl = `/assets/images/${logoData.originalname}`;
                                         }
 
-                                        const stars = Array.from({ length: 5 }, (_, index) => (
-                                            <span
-                                                key={index}
-                                                onClick={() => onRatingChange(index + 1)}
-                                                style={{
-                                                    cursor: "pointer",
-                                                    color: index < company.calculatedOverallRating ? "#FC9823" : "#ccc"
-                                                }}
-                                            >
-                                                ★
-                                            </span>
-                                        ));
+                                        // const stars = Array.from({ length: 5 }, (_, index) => (
+                                        //     <span
+                                        //         key={index}
+                                        //         onClick={() => onRatingChange(index + 1)}
+                                        //         style={{
+                                        //             cursor: "pointer",
+                                        //             color: index < company.calculatedOverallRating ? "#FC9823" : "#ccc"
+                                        //         }}
+                                        //     >
+                                        //         ★
+                                        //     </span>
+                                        // ));
 
-                    return viewType === "grid" ? (
-                        <>
-                        {/* COMPANY */}
-                        <div
-                            key={company.id}
-                            className={styles["company-card"]}
-                            onClick={() => handleCompanyClick(company.id)}
-                        >
-                        <div className={styles["company-logo"]}>
-                            <img src={logoUrl} alt="Logo" />
-                            <h4>{company.name}</h4>
-                            <div className={styles["stars"]}>{stars}</div>
-                        </div>
-                            {company.Reviews.length > 0 ? (
-                        <>
-                            {company.Reviews.map((review) => (
-                            <div key={review.id} className={styles["company-info"]}>
-                            <div>
-                                <LikeIcon />
-                                <p>{company.goodCount}</p>
-                            </div>
-                            <div>
-                                <DislikeIcon />
-                                <p>{company.notGoodCount}</p>
-                            </div>
-                             <p>{company.country}</p>
 
-                        {/* RATINGS */}
-                     <div className={styles["ratings"]}>
-                        <button className={styles["rating-button"]}>
-                         {company.calculatedOverallRating}
-                        </button>
-                         <p>Overall Rating</p>
-                         <p>{review.emp_thougts}</p>
-                      </div>
-                    </div>
-                    ))}
-      <div
-        className={styles["ad-card"]}
-        style={{
-          backgroundColor: "#1C9596",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <p style={{ textAlign: "center" }}>Add here</p>
-      </div>
-    </>
-  ) : (
-    <p>No reviews available</p>
-  )}
+return viewType === "grid" ? (
+    // GRID
+<>
+{/* COMPANY */}
+<div
+key={company.id}
+className={styles["company-card"]}
+onClick={() => handleCompanyClick(company.id)}
+>
+<div className={styles["company-logo"]}>
+    <img src={logoUrl} alt="Logo" />
+    <h4>{company.name || "Company Name Not Available"}</h4>
+
+    {/* <div className={styles["stars"]}>{stars}</div> */}
 </div>
-                                            </>
+                                          
+{company.Reviews?.length > 0 || company.Endows?.length > 0 ? (
+  <>
+    {(() => {
+      // Initialize counts.
+      let goodCount = 0;
+      let notGoodCount = 0;
 
-                                        ) : (
-                                            <>
-                                                <div key={company.id} className={styles["review-card"]} onClick={() => handleCompanyClick(company.id)}>
-                                                    <div className={styles["content"]}>
-                                                        <div className={styles["company-logo"]}>
-                                                            <img src={logoUrl} alt="Logo" />
-                                                        </div>
-                                                        <div className={styles.name}>
-                                                            <p>{company.name || "Company Name Not Available"}</p>
-                                                            <div className={styles["stars"]}>
-                                                                {stars}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className={styles.actions}>
-                                                        <div className={styles.ratings}>
-                                                            <div className={styles.ratingItem}>
-                                                                <p>{company.country}</p>
-                                                            </div>
-                                                            <div className={styles.ratingItem}>
-                                                                <button className={styles["rating-button"]}>{company.calculatedOverallRating}</button>
-                                                                <p>Overall Ratings</p>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <LikeIcon />
-                                                            <p>{company.goodCount}</p>
-                                                        </div>
-                                                        <div>
-                                                            <DislikeIcon />
-                                                            <p>{company.notGoodCount}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className={styles["vertical-ad-card"]}>
-                                                    <p>Add here...</p>
-                                                </div>
-                                            </>
-                                        );
-                                    })
-                                ) : (
-                                    <p>No companies found based on the search criteria.</p>
-                                )}
+      // Count "good" and "not-good" from Reviews.
+      company.Reviews?.forEach((review) => {
+        if (review.emp_thougts === "good") {
+          goodCount += 1;
+        } else if (review.emp_thougts === "not-good") {
+          notGoodCount += 1;
+        }
+      });
+
+      // Count "good" and "not-good" from Endows.
+      company.Endows?.forEach((endow) => {
+        if (endow.emp_thougts === "good") {
+          goodCount += 1;
+        } else if (endow.emp_thougts === "not-good" || endow.emp_thougts === "bad") {
+          notGoodCount += 1;
+        }
+      });
+
+
+      const renderStars = (rating) => {
+        const stars = [];
+        const fullStars = Math.floor(rating); // Number of fully filled stars.
+        const fraction = rating % 1;          // Fractional part of rating.
+      
+        // Add fully filled stars
+        for (let i = 0; i < fullStars; i++) {
+          stars.push(
+            <span
+              key={`full-${i}`}
+              style={{
+                color: "#fc9823", // Full stars color.
+                fontSize: "30px",
+                cursor: "pointer",
+              }}
+            >
+              ★
+            </span>
+          );
+        }
+      
+        // Add partially filled star based on fraction.
+        if (fraction > 0) {
+          const percentage = Math.round(fraction * 100); // Convert fraction to percentage (e.g., 0.4 -> 40%).
+          const partialStar = (
+            <span
+              key={`partial-${fullStars}`}
+              style={{
+                backgroundImage: `linear-gradient(to right, #fc9823 ${percentage}%, #ccc ${percentage}%)`, // Dynamic fill based on percentage.
+                WebkitBackgroundClip: "text",
+                color: "transparent",
+                fontSize: "30px",
+                cursor: "pointer",
+              }}
+            >
+              ★
+            </span>
+          );
+          stars.push(partialStar);
+        }
+      
+        // Add empty stars to make up to 5 stars.
+        for (let i = fullStars + (fraction > 0 ? 1 : 0); i < 5; i++) {
+          stars.push(
+            <span
+              key={`empty-${i}`}
+              style={{
+                color: "#ccc", // Empty stars color.
+                fontSize: "30px",
+                cursor: "pointer",
+              }}
+            >
+              ★
+            </span>
+          );
+        }
+      
+        return stars;
+      };
+        
+
+      return (
+        <div className={styles["company-info"]}>
+          {/* Display counts */}
+          <div>
+            <LikeIcon />
+            <p>{goodCount}</p> {/* Total "good" thoughts */}
+          </div>
+          <div>
+            <DislikeIcon />
+            <p>{notGoodCount}</p> {/* Total "not-good" thoughts */}
+          </div>
+
+          {/* Country */}
+          <p>{company.country}</p>
+
+          {/* Ratings Section */}
+          <div className={styles["ratings"]}>
+            <button className={styles["rating-button"]}>
+              {/* Display calculatedOverallRating if it exists, otherwise "N/A" */}
+              {company.Reviews[0]?.calculatedOverallRating 
+                ? (parseFloat(company.Reviews[0]?.calculatedOverallRating) || 0).toFixed(1)
+                : "N/A"}
+            </button>
+            <p>Overall Rating</p>
+
+
+            {/* Display Stars */}
+            <div className={styles["stars"]}>
+              {renderStars(parseFloat(company.Reviews[0]?.calculatedOverallRating) || 0)}
+            </div>
+          </div>
+        </div>
+      );
+    })()}
+
+
+  </>
+) : (
+  <p>No reviews or endows available.</p>
+)}
+</div>
+                                          
+    <div className={styles["ad-card"]}>
+        <p style={{ textAlign: "center" }}>Add here</p>
+</div>
+    </>
+    )
+    
+    
+    : 
+    (
+    // LIST
+    <>
+<div 
+key={company.id} 
+className={styles["review-card"]} 
+onClick={() => handleCompanyClick(company.id)}
+>
+    <div className={styles["content"]}>
+            <div className={styles["company-logo"]}>
+                <img src={logoUrl} alt="Logo" />
+            </div>
+           <div className={styles.name}>
+               <p>{company.name || "Company Name Not Available"}</p>
+               {/* <div className={styles["stars"]}>{stars}</div> */}
+           </div>
+    </div>
+    
+    <div className={styles.actions}>
+           <div className={styles.ratings}>
+                <div className={styles.ratingItem}>
+                <p>{company.country}</p>
+            </div>
+            <div className={styles.ratingItem}>
+                <button className={styles["rating-button"]}>{company.calculatedOverallRating}</button>
+                <p>Overall Ratings</p>
+            </div>
+    </div>
+           <div>
+                <LikeIcon />
+
+            </div>
+            <div>
+                <DislikeIcon />
+            </div>
+    </div>
+    </div>
+    <div className={styles["vertical-ad-card"]}>
+            <p>Add here...</p>
+    </div>
+    </>
+    );
+    })
+) : (
+    <p>No companies found based on the search criteria.</p>
+)}
 
                                 <Pagination />
 
@@ -465,4 +568,4 @@ const EmployeeSearchesOld = () => {
     );
 };
 
-export default EmployeeSearchesOld;
+export default EmployeeSearches;

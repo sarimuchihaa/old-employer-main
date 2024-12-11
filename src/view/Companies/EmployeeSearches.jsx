@@ -5,7 +5,11 @@ import { useRouter } from "next/navigation";
 import styles from "../../style/pageStyle/searchStyle/employerSearch.module.scss";
 import Input from "../../dump/SearchInput";
 import Button from "../../dump/Button";
+import Flag from "react-world-flags";
 import Dropdown from "../../dump/Dropdown";
+import { searchCompany, saveNotFoundCompany } from "../../services/company";
+import { searchUsers } from "../../services/user";
+import useLocation from "../../components/Topbar/Location";
 import {
   DislikeIcon,
   GridIcon,
@@ -17,22 +21,117 @@ import {
 import Pagination from "../../dump/Pagination";
 import Link from "next/link";
 
+
 // Frontend.
 const EmployeeSearches = () => {
   // States.
   const router = useRouter();
   const [companies, setCompanies] = useState([]);
+  const { city: locationCity, country: locationCountry } = useLocation();
+  const [countries, setCountries] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [filteredCities, setFilteredCities] = useState([]);
+  const [inputs, setInputs] = useState({
+    searchText: "",
+    country: "",
+    city: "",
+    role: "Employer",
+  });
+
+  const roles = [
+    { label: "Employer", value: "Employer" },
+    { label: "Employee", value: "Employee" },
+  ];
+
   const [viewType, setViewType] = useState("grid"); // Toggle b/w grid and list views.
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = viewType === "grid" ? 11 : 5;
   const totalPages = Math.ceil(companies.length / cardsPerPage);
+
+
+  const [countrySearchText, setCountrySearchText] = useState("");
+  const [citySearchText, setCitySearchText] = useState("");
+
+  useEffect(() => {
+    const loadData = async () => {
+      const cityList = await import("../../constants/cities.json");
+      const countryList = await import("../../constants/countries.json");
+      setCities(cityList.default);
+      setCountries(countryList.default);
+    };
+
+    loadData();
+  }, []);
+
+  useEffect(() => {
+    if (inputs.country) {
+      setFilteredCities(
+        cities.filter((city) => city.country_name === inputs.country)
+      );
+    } else {
+      setFilteredCities([]);
+    }
+  }, [inputs.country, cities]);
+
+  const handleCountrySelect = (value) => {
+    setInputs({ ...inputs, country: value.name, city: "" });
+  };
+
+  const handleCitySelect = (value) => {
+    setInputs({ ...inputs, city: value.name });
+  };
+
+  const handleInputChange = (e) => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+  };
+
+  const handleRoleSelect = (role) => {
+    setInputs({ ...inputs, role });
+  };
+
+  const handleSearch = async () => {
+    const { role, searchText, country, city } = inputs;
+    const finalCountry = country || locationCountry;
+    const finalCity = city || locationCity;
+    try {
+      if (role === "Employee") {
+        const params = {
+          country: finalCountry || "",
+          city: finalCity || "",
+          searchText: searchText,
+          overallRating: 0,
+          skills: "",
+          industry: "",
+          size: "",
+        };
+        const userData = await searchUsers(params);
+        router.push(`/employeeSearch?${new URLSearchParams(params).toString()}`);
+      } else if (role === "Employer") {
+        const params = {
+          country: country || "",
+          city: city || "",
+          searchText: searchText,
+          overallRating: 0,
+        };
+        const companyData = await searchCompany(params);
+        if (companyData.length === 0 && searchText) {
+          await saveNotFoundCompany(searchText);
+        }
+        router.push(`/employerSearch?${new URLSearchParams(params).toString()}`);
+        setCompanies(companyData);
+      }
+    } catch (error) {
+      console.error("Error during search:", error);
+    }
+  };
+
 
   // Insert random ad card.
   const adCard = (
     <div
       className={`w-full ${
         viewType === "grid" ? "h-60" : "h-36"
-      } bg-[#1c9596] hover:bg-[#127f7f] text-white flex justify-center items-center rounded-lg font-sans transition-colors duration-300`}
+      } bg-[#23babc] hover:bg-[#1c9596] text-white flex justify-center items-center rounded-lg font-sans transition duration-300 transform hover:scale-105`}
     >
       <p>Add here...</p>
     </div>
@@ -79,9 +178,6 @@ const EmployeeSearches = () => {
     return response;
   };
 
-  const handleInputChange = (e) => {
-    setInputs({ ...inputs, [e.target.name]: e.target.value });
-  };
 
   // Scroll to top when currentPage changes.
   useEffect(() => {
@@ -211,32 +307,58 @@ const EmployeeSearches = () => {
         <div className={`${styles["form-container"]}`}>
           <div className={`${styles["form-content"]}`}>
             <div className={`${styles["input-group"]}`}>
-              <SearchIcon />
               <Input
-                placeholder={"Search Company/Employer or Keyword"}
                 containerClassName={`${styles["input-width"]}`}
+                placeholder={"Search Company/Employer"}
+                inputContainerClass={`${styles["input-div"]}`}
+                value={inputs.searchText}
                 onChange={handleInputChange}
                 name={"searchText"}
               />
-              <div className={styles.divider}></div>
-              <LocationIcon />
+              <div className="employerSearch_divider__eDA5f"></div>
+
               <div className={`${styles["dropdown-container"]}`}>
                 <Dropdown
+                  items={countries
+                    .filter((country) =>
+                      country.name
+                        .toLowerCase()
+                        .includes(countrySearchText.toLowerCase())
+                    )
+                    .map((country) => ({
+                      label: (
+                        <div className={`${styles["dropdown-item"]}`}>
+                          <Flag code={country.iso2} width="25" />
+                          <span>{country.name}</span>
+                        </div>
+                      ),
+                      value: country,
+                    }))}
                   label={
                     <input
                       type="text"
-                      onChange={(e) => setCitySearchText(e.target.value)}
-                      placeholder="Choose Location"
+                      value={countrySearchText}
+                      onChange={(e) => {
+                        setCountrySearchText(e.target.value);
+                      }}
+                      placeholder="Select location"
                       className={styles["dropdown-input"]}
                       autoFocus
                     />
                   }
-                  onSelect={(value) => handleCitySelect(value)}
+                  onSelect={(value) => {
+                    handleCountrySelect(value);
+                    setCountrySearchText(value.name);
+                  }}
                 />
               </div>
             </div>
           </div>
-          <Button text={"Search"} classes={styles["btn-join"]} />
+          <Button
+            text={"Search"}
+            classes={styles["btn-join"]}
+            onClick={handleSearch}
+          />
         </div>
         <div className={styles["columns-container"]}>
           <div>
@@ -300,7 +422,7 @@ const EmployeeSearches = () => {
                     return viewType === "grid" ? (
                       <div
                         key={company.id}
-                        className="flex flex-col lg:flex-row justify-between items-center text-center 2xl:p-8 xl:p-6 lg:p-6 bg-white rounded-lg cursor-pointer shadow-md transform duration-200 transition-transform hover:scale-105 hover:bg-[#1c9596] hover:text-white group"
+                        className="flex flex-col lg:flex-row justify-between items-center text-center 2xl:p-8 xl:p-6 lg:p-6 bg-white rounded-lg cursor-pointer shadow-md transform duration-200 transition-transform hover:scale-105 hover:bg-[#23babc] hover:text-white group"
                         onClick={() => handleCompanyClick(company.id)}
                       >
                         {company.Reviews?.length > 0 ||
@@ -343,7 +465,7 @@ const EmployeeSearches = () => {
 
                               {/* Overall Rating */}
                               <div className="flex items-center justify-center lg:justify-end">
-                                <button className="bg-[#1c9596] text-white 2xl:px-2 2xl:py-2 xl:px-1 xl:py-1 lg:px-1 lg:py-1 rounded-md group-hover:bg-white group-hover:text-[#1c9596]">
+                                <button className="bg-[#23babc] text-white 2xl:px-2 2xl:py-2 xl:px-1 xl:py-1 lg:px-1 lg:py-1 rounded-md group-hover:bg-white group-hover:text-[#1c9596]">
                                   {company.Reviews[0]?.calculatedOverallRating
                                     ? (
                                         parseFloat(
@@ -358,7 +480,7 @@ const EmployeeSearches = () => {
                             </div>
                           </>
                         ) : (
-                          <p className="w-full h-20 p-4 bg-[#1c9596] text-white rounded-2xl">
+                          <p className="w-full h-20 p-4 bg-[#23babc] text-white rounded-2xl">
                             No companies found based on the search criteria.
                           </p>
                         )}
@@ -410,7 +532,7 @@ const EmployeeSearches = () => {
 
                                 {/* Overall Rating */}
                                 <div className="flex items-center justify-center space-x-2">
-                                  <button className="bg-[#1c9596] text-white px-4 py-2 rounded-md group-hover:bg-white group-hover:text-[#1c9596]">
+                                  <button className="bg-[#23babc] text-white px-4 py-2 rounded-md group-hover:bg-white group-hover:text-[#23babc]">
                                     {company.Reviews[0]?.calculatedOverallRating
                                       ? (
                                           parseFloat(
@@ -446,7 +568,7 @@ const EmployeeSearches = () => {
                     );
                   })
                 ) : (
-                  <p className="w-full h-20 p-4 bg-[#1c9596] text-white rounded-2xl">
+                  <p className="w-full h-20 p-4 bg-[#23babc] text-white rounded-2xl">
                     No companies found based on the search criteria.
                   </p>
                 )}
@@ -457,7 +579,7 @@ const EmployeeSearches = () => {
                 onPageChange={handlePageChange}
               />
               <Link href="/companies">
-                <div className="w-full h-36 bg-[#1c9596] hover:bg-[#127f7f] text-white flex justify-center items-center rounded-lg font-sans transition-colors duration-300">
+                <div className="w-full h-36 bg-[#23babc] hover:bg-[#1c9596] text-white flex justify-center items-center rounded-lg font-sans transition duration-300 transform hover:scale-105">
                   <p>Add here...</p>
                 </div>
               </Link>

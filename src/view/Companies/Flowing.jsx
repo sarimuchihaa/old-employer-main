@@ -1,6 +1,5 @@
-// Imports.
 "use client";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import styles from "../../style/pageStyle/searchStyle/employerSearch.module.scss";
 import Input from "../../dump/SearchInput";
@@ -17,49 +16,15 @@ import {
 import Pagination from "../../dump/Pagination";
 import Link from "next/link";
 
-// Frontend.
 const EmployeeSearches = () => {
-  // States.
   const router = useRouter();
   const [companies, setCompanies] = useState([]);
   const [viewType, setViewType] = useState("grid"); // Toggle b/w grid and list views.
   const [currentPage, setCurrentPage] = useState(1);
-  const cardsPerPage = viewType === "grid" ? 11 : 5;
-  const totalPages = Math.ceil(companies.length / cardsPerPage);
+  const [totalCompanies, setTotalCompanies] = useState([]);
 
-  // Insert random ad card.
-  const adCard = (
-    <div
-      className={`w-full ${
-        viewType === "grid" ? "h-60" : "h-36"
-      } bg-[#1c9596] hover:bg-[#127f7f] text-white flex justify-center items-center rounded-lg font-sans transition-colors duration-300`}
-    >
-      <p>Add here...</p>
-    </div>
-  );
-
-  // Memoized function to calculate current companies and ensure consistency.
-  const currentCompanies = useMemo(() => {
-    const indexOfLastCard = currentPage * cardsPerPage;
-    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-
-    // Slice companies for current page.
-    const paginatedCompanies = companies.slice(
-      indexOfFirstCard,
-      indexOfLastCard
-    );
-
-    // Always insert ad card into current page at random position.
-    const totalCards = paginatedCompanies.length + 1; // +1 for ad card.
-    const randomIndex = Math.floor(Math.random() * totalCards); // Random position for ad card.
-
-    const companiesWithAd = [...paginatedCompanies];
-    companiesWithAd.splice(randomIndex, 0, { adCard: true }); // Insert ad card object.
-
-    return companiesWithAd;
-  }, [companies, currentPage, viewType]); // Recalculate when companies, currentPage or viewType changes.
-
-  // Functions.
+  const companiesPerPage = 12;
+  const totalPages = Math.ceil(companies.length / companiesPerPage);
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
@@ -79,27 +44,38 @@ const EmployeeSearches = () => {
     return response;
   };
 
-  const handleInputChange = (e) => {
-    setInputs({ ...inputs, [e.target.name]: e.target.value });
-  };
+  useEffect(() => {
+    const fetchCompanies = async () => {
+      try {
+        const response = await getCompanyData();
 
-  // Scroll to top when currentPage changes.
+        if (!response || !response.ok) {
+          throw new Error(
+            `HTTP error! Status: ${response?.status || "No response"}`
+          );
+        }
+
+        const data = await response.json();
+        setCompanies(data);
+      } catch (err) {
+        console.error("Error fetching companies:", err.message);
+      }
+    };
+
+    fetchCompanies();
+  }, []);
+
+
+  // Scroll to the top when currentPage changes
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
-  // Randomly insert ad card in list of companies.
-  const insertAdCard = (companies) => {
-    const totalCards = companies.length + 1; // +1 for ad card.
-    const randomIndex = Math.floor(Math.random() * totalCards); // Random index to insert ad card.
+  // Calculate the start and end indices for slicing the companies array
+  const startIndex = (currentPage - 1) * companiesPerPage;
+  const endIndex = startIndex + companiesPerPage;
+  const currentCompanies = companies.slice(startIndex, endIndex);
 
-    const companiesWithAdCard = [...companies];
-    companiesWithAdCard.splice(randomIndex, 0, { adCard: true }); // Insert ad card object.
-
-    return companiesWithAdCard;
-  };
-
-  // Calculate ratings.
   const calculateRatings = (company) => {
     let goodCount = 0;
     let notGoodCount = 0;
@@ -126,7 +102,6 @@ const EmployeeSearches = () => {
     return { goodCount, notGoodCount };
   };
 
-  // Render stars.
   const renderStars = (rating) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -184,27 +159,6 @@ const EmployeeSearches = () => {
     return stars;
   };
 
-  useEffect(() => {
-    const fetchCompanies = async () => {
-      try {
-        const response = await getCompanyData();
-
-        if (!response || !response.ok) {
-          throw new Error(
-            `HTTP error! Status: ${response?.status || "No response"}`
-          );
-        }
-
-        const data = await response.json();
-        setCompanies(data);
-      } catch (err) {
-        console.error("Error fetching companies:", err.message);
-      }
-    };
-
-    fetchCompanies();
-  }, []);
-
   return (
     <div className={styles.search}>
       <div className={styles["content-container"]}>
@@ -215,7 +169,6 @@ const EmployeeSearches = () => {
               <Input
                 placeholder={"Search Company/Employer or Keyword"}
                 containerClassName={`${styles["input-width"]}`}
-                onChange={handleInputChange}
                 name={"searchText"}
               />
               <div className={styles.divider}></div>
@@ -238,12 +191,14 @@ const EmployeeSearches = () => {
           </div>
           <Button text={"Search"} classes={styles["btn-join"]} />
         </div>
+
         <div className={styles["columns-container"]}>
           <div>
             <div className={styles["filter-group"]}>
               <label className={styles["filters-search"]}></label>
             </div>
           </div>
+
           <div className={styles["right-column"]}>
             <div className={styles["filtered-companies"]}>
               <div className="flex justify-between items-center pb-4">
@@ -273,6 +228,7 @@ const EmployeeSearches = () => {
                   </div>
                 </div>
               </div>
+
               <div
                 className={
                   viewType === "grid"
@@ -281,11 +237,7 @@ const EmployeeSearches = () => {
                 }
               >
                 {currentCompanies.length > 0 ? (
-                  currentCompanies.map((company, index) => {
-                    if (company.adCard) {
-                      return adCard; // Show the ad card
-                    }
-
+                  currentCompanies.map((company) => {
                     const logoData = company.logo
                       ? JSON.parse(company.logo)
                       : null;
@@ -358,9 +310,7 @@ const EmployeeSearches = () => {
                             </div>
                           </>
                         ) : (
-                          <p className="w-full h-20 p-4 bg-[#1c9596] text-white rounded-2xl">
-                            No companies found based on the search criteria.
-                          </p>
+                          <p>No reviews or endows available.</p>
                         )}
                       </div>
                     ) : (
@@ -369,98 +319,20 @@ const EmployeeSearches = () => {
                         className="flex w-full 2xl:justify-between items-center text-center bg-white rounded-lg cursor-pointer shadow-md transform duration-200 transition-transform hover:scale-105 hover:bg-[#1c9596] hover:text-white group 2xl:p-4 xl:p-2 lg:p-4 md:p-4 sm:p-12 p-14 2xl:flex-row xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col"
                         onClick={() => handleCompanyClick(company.id)}
                       >
-                        {company.Reviews?.length > 0 ||
-                        company.Endows?.length > 0 ? (
-                          <>
-                            {/* Company Logo and Info Layout */}
-                            <div className="flex flex-row items-center space-x-4">
-                              {/* Logo */}
-                              <img
-                                src={logoUrl}
-                                alt="Logo"
-                                className="w-24 h-24 rounded-full object-cover"
-                              />
-
-                              {/* Company Name and Stars */}
-                              <div className="flex flex-col items-start">
-                                {/* Company Name */}
-                                <h4 className="text-lg font-bold mb-2">
-                                  {company.name || "Company Name Not Available"}
-                                </h4>
-
-                                {/* Stars */}
-                                <div className="flex items-center mb-2">
-                                  {renderStars(
-                                    parseFloat(
-                                      company.Reviews[0]
-                                        ?.calculatedOverallRating
-                                    ) || 0
-                                  )}
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Ratings, Country Info, Like/Dislike (arranged at the end) */}
-                            <div className="flex flex-row items-center 2xl:justify-end lg:justify-end md:justify-between sm:justify-between space-x-6 w-full pt-2">
-                              <div className="flex flex-col items-center space-y-2">
-                                {/* Country Name */}
-                                <p className="text-sm mb-2">
-                                  {company.country}
-                                </p>
-
-                                {/* Overall Rating */}
-                                <div className="flex items-center justify-center space-x-2">
-                                  <button className="bg-[#1c9596] text-white px-4 py-2 rounded-md group-hover:bg-white group-hover:text-[#1c9596]">
-                                    {company.Reviews[0]?.calculatedOverallRating
-                                      ? (
-                                          parseFloat(
-                                            company.Reviews[0]
-                                              ?.calculatedOverallRating
-                                          ) || 0
-                                        ).toFixed(1)
-                                      : "N/A"}
-                                  </button>
-                                  <p className="text-sm ml-2 space-y-4">
-                                    Overall ratings
-                                  </p>
-                                </div>
-                              </div>
-
-                              {/* Dislike */}
-                              <div className="flex flex-col items-center space-y-8 p-4">
-                                <DislikeIcon />
-                                <p className="text-sm mt-1">{notGoodCount}</p>
-                              </div>
-
-                              {/* Like */}
-                              <div className="flex flex-col items-center space-y-8 p-4">
-                                <LikeIcon />
-                                <p className="text-sm mt-1">{goodCount}</p>
-                              </div>
-                            </div>
-                          </>
-                        ) : (
-                          <p>No reviews or endows available.</p>
-                        )}
+                        <div>{/* Add additional content if needed */}</div>
                       </div>
                     );
                   })
                 ) : (
-                  <p className="w-full h-20 p-4 bg-[#1c9596] text-white rounded-2xl">
-                    No companies found based on the search criteria.
-                  </p>
+                  <p>No companies available.</p>
                 )}
               </div>
+
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
                 onPageChange={handlePageChange}
               />
-              <Link href="/companies">
-                <div className="w-full h-36 bg-[#1c9596] hover:bg-[#127f7f] text-white flex justify-center items-center rounded-lg font-sans transition-colors duration-300">
-                  <p>Add here...</p>
-                </div>
-              </Link>
             </div>
           </div>
         </div>

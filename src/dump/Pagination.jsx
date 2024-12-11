@@ -1,14 +1,10 @@
-"use client";
-import React, { useState } from 'react';
+import React from "react";
 import styles from "../style/dumpStyle/Pagination.module.scss";
 
-const Pagination = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 4; // Adjust based on your requirements
-
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
+      onPageChange(page);
     }
   };
 
@@ -27,7 +23,9 @@ const Pagination = () => {
         return (
           <button
             key={pageNum}
-            className={`${styles["page-number"]} ${currentPage === pageNum ? styles.active : ''}`}
+            className={`${styles["page-number"]} ${
+              currentPage === pageNum ? styles.active : ""
+            }`}
             onClick={() => handlePageChange(pageNum)}
           >
             {pageNum}

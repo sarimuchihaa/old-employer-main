@@ -15,8 +15,6 @@ import {
   GridIcon,
   LikeIcon,
   ListIcon,
-  LocationIcon,
-  SearchIcon,
 } from "../../icon";
 import Pagination from "../../dump/Pagination";
 import Link from "next/link";
